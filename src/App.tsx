@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import './App.css'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import Home from './pages/Home'
+import Register from './pages/Register'
+import Login from './pages/Login'
+import { AuthContext } from './context/AuthContext'
+import Profile from './pages/Profile'
+import Friends from './pages/Friends'
+import Settings from './pages/Settings'
+import NotFound from './pages/NotFound'
 
-function App() {
+const App:React.FC = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={userInfo?.isLoggedIn ? <Home /> : <Login />}/> 
+        <Route path='/register' element={<Register />}/>
+        <Route path='/login' element={userInfo?.isLoggedIn ? <Navigate to={'/'}/> : <Login />} />
+        <Route path='/profile/:id' element={userInfo?.isLoggedIn ? <Profile /> : <Login />}/>
+        <Route path='/friends/:id' element={<Friends />}/>
+        <Route path='/settings' element={<Settings />}/>
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
