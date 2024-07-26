@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import useNotifications from '../utils/helper/useNotifications'
+import useAuthStore from '../store/authStore';
 
 const Register: React.FC = () => {
   const navigate = useNavigate()
@@ -10,9 +9,9 @@ const Register: React.FC = () => {
       username: "",
       email: "",
       password: "",
-  })
+  });
+  const register = useAuthStore((state) => state.register);
 
-  const { onError, onSuccess } = useNotifications()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target
@@ -25,15 +24,10 @@ const Register: React.FC = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-        const response = await registerUser(formData)
-        if (response) {
-            onSuccess("Registrasi berhasil")
-            navigate("/login")
-        } else {
-            onError("Registrasi tidak berhasil, email mungkin sudah terdaftar")
-        }
-    } catch (err) {
-        onError(err as string)
+        await register(formData)
+        navigate("/login")
+      } catch (err) {
+        // onError("Registrasi tidak berhasil, email mungkin sudah terdaftar")
     }
   }
 
@@ -41,7 +35,7 @@ const Register: React.FC = () => {
   return (
     <div className="bg-gray-100 h-screen flex">        
       <div className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 w-[50%] rounded-r-3xl relative">
-        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-4 block">Welcome to <br /> Facepedia</label>
+        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-4 block">Welcome to <br /> Temuka</label>
       </div>
       <div className="bg-gray-100 w-[50%] flex justify-center items-center">
         <form 

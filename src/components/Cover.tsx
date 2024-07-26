@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { ProfileID } from './ProfileFeed'
 import { Link } from 'react-router-dom'
 import { followUser, getUserDetail } from '../services/userService'
-import { UserDetailData } from '../types'
+import { ProfileID, UserDetailData } from '../types'
 import useAuthStore from '../store/authStore'
 
 const Cover: React.FC<ProfileID> = ({id}) => {

@@ -1,28 +1,24 @@
 import React, {useState, useContext, useEffect} from 'react'
 import Leftbar from '../components/Leftbar'
 import Navbar from '../components/Navbar'
-import { AuthContext } from '../context/AuthContext'
-import { UserDetailData } from '../utils/types'
-import UseNotifications from '../utils/helper/useNotifications'
-import useUpload from '../utils/hooks/useUpload'
-import useUpdateUser from '../utils/hooks/useUpdateUser'
-import useGetUserDetail from '../utils/hooks/useGetUserDetail'
+import useAuthStore from '../store/authStore'
+import { getFileStorage } from '../services/index'
+import { getUserDetail, updateUser } from '../services/userService'
+import { UserDetailData } from '../types'
 
 const Settings: React.FC = () => {
 
-    const userID = userInfo?.userInfo.id
+    const user = useAuthStore((state) => state.user);
     const [userdata, setUserdata] = useState<UserDetailData>()
-    const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/"
+    const publicFolder = getFileStorage();
     
-    const [uploadedPhoto, setUploadedPhoto] = useState("")
-    const [loading, setLoading] = useState(false)
-    const {onSuccess, onError} = UseNotifications()
+    const [uploadedPhoto, setUploadedPhoto] = useState("");
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const { data } = await useGetUserDetail(userID)
+                const { data } = await getUserDetail(Number(user?.id))
                 setUserdata(data)
             } catch(err){
                 console.log(err)
@@ -36,36 +32,34 @@ const Settings: React.FC = () => {
 
     const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const user: UserDetailData = {
+        const userdetail: UserDetailData = {
             username: username,
         }
         if(profilePictureFile){
           try {
             const formData = new FormData()
             formData.append('file', profilePictureFile)
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            await useUpload(formData)        
-            user.profilePicture = profilePictureFile.name
+            // await useUpload(formData)        
+            userdetail.profilePicture = profilePictureFile.name
           } catch(err) {
-              onError(err as string)
+            //   onError(err as string)
           }
         } else {
-          onError('No file selected')
+        //   onError('No file selected')
         }
     
         try {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const res = await useUpdateUser(userID, user)
+          const res = await updateUser(Number(user?.id), userdetail)
           setLoading(!loading)
           setUploadedPhoto("")
           if(res) {
-            onSuccess("User has been updated")
+            // onSuccess("User has been updated")
           }
           else {
-            onError("Error while updating")
+            // onError("Error while updating")
           }
         } catch(err){
-          onError(err as string)
+        //   onError(err as string)
         }
       }
 
@@ -78,14 +72,13 @@ const Settings: React.FC = () => {
           try {
             const formData = new FormData()
             formData.append('file', file)
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            await useUpload(formData)
+            // await useUpload(formData)
             setUploadedPhoto(file.name)        
           } catch(err) {
-              onError(err as string)
+            //   onError(err as string)
           }
         } else {
-          onError('No file selected')
+        //   onError('No file selected')
         }
     }
 

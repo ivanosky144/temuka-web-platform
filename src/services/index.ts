@@ -6,4 +6,9 @@ export function getToken() {
     }
 }
 
+export function getFileStorage() {
+    const fileStorage = API_KEY + "/images/";
+    return fileStorage;
+}
+
 export default API_KEY;

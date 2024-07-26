@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import Post from './Post'
 import Share from './Share'
 import { PostData } from '../types'

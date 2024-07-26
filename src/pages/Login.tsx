@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import useNotifications from '../utils/helper/useNotifications'
+import { loginUser } from '../services/authService'
+import useAuthStore from '../store/authStore'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -9,9 +9,9 @@ const Login: React.FC = () => {
   const [formData, setFormData] = useState({
       email: "",
       password: "",
-  })
+  });
+  const login = useAuthStore((state) => state.login);
 
-  const { onError, onSuccess } = useNotifications()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target
@@ -24,15 +24,10 @@ const Login: React.FC = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-        const response = await loginUser(formData)
-        if (response) {
-            onSuccess("Login berhasil")
-            navigate("/")
-        } else {
-            onError("Login tidak berhasil, email atau password yang anda masukkan tidak sesuai")
-        }
-    } catch (err) {
-        onError(err as string)
+        await login(formData)
+        navigate("/")
+      } catch (err) {
+        // onError("Login tidak berhasil, email atau password yang anda masukkan tidak sesuai")
     }
   }
 
@@ -40,7 +35,7 @@ const Login: React.FC = () => {
   return (
     <div className="bg-gray-100 h-screen flex">        
       <div className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 w-[50%] rounded-r-3xl relative">
-        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-4 block">Welcome to <br /> Facepedia</label>
+        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-4 block">Welcome to <br /> Temuka</label>
       </div>
       <div className="bg-gray-100 w-[50%] flex justify-center items-center">
         <form 

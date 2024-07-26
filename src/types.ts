@@ -1,12 +1,16 @@
-export interface FriendData {
+export interface FollowersData {
     _id: string
     username: string
     profilePicture: string
     email: string
 }
 
+export interface ProfileID {
+    id: number
+}
+
 export interface PostData {
-    _id?: number
+    _id?: any
     userId: string
     desc: string
     image?: string
@@ -44,6 +48,6 @@ export type GeneralPostDetailResponse = GeneralAPIResponse<PostData>
 export type GeneralUserRegisterResponse = GeneralAPIResponse<UserAuthData> 
 export type GeneralUserLoginResponse = GeneralAPIResponse<UserAuthData> & { token: string }
 export type GeneralPostResponse = GeneralAPIResponse<PostData[]>
-export type GeneralFriendListResponse = GeneralAPIResponse<FriendData[]>
+export type GeneralFollowerListResponse = GeneralAPIResponse<FollowersData[]>
 
 

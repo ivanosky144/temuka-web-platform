@@ -2,13 +2,10 @@ import React, {useEffect, useState} from 'react'
 import Share from './Share'
 import Post from './Post'
 import Cover from './Cover'
-import { PostData } from '../types'
+import { PostData, ProfileID } from '../types'
 import { getTimelinePosts } from '../services/postService'
 import useAuthStore from '../store/authStore'
 
-export interface ProfileID {
-  id: number
-}
 
 const ProfileFeed: React.FC<ProfileID> = ({id}) => {
 
@@ -17,12 +14,12 @@ const ProfileFeed: React.FC<ProfileID> = ({id}) => {
 
     useEffect(()=> {
         const fetchData = async () => {
-        try {
-            const { data } = await getTimelinePosts(id)
-            setPosts(data)
-        } catch(err){
-            console.log(err)
-        }
+          try {
+              const { data } = await getTimelinePosts(id)
+              setPosts(data)
+          } catch(err){
+              console.log(err)
+          }
         }
         fetchData()
     }, [])  

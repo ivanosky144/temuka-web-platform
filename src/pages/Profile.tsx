@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
         <Navbar />
         <div className="flex">
             <Leftbar />
-            <ProfileFeed id={id ?? ''}/>
+            {/* <ProfileFeed id={id ?? ''}/> */}
         </div>
     </>
   )

@@ -3,36 +3,37 @@ import { useParams } from 'react-router'
 import Leftbar from '../components/Leftbar'
 import Navbar from '../components/Navbar'
 import Cover from '../components/Cover'
-import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
-import useGetFriendList from '../utils/hooks/useGetFriendList'
-import { FriendData } from '../utils/types'
-import UseNotifications from '../utils/helper/useNotifications'
+import useAuthStore from '../store/authStore'
+import { getFollowers } from '../services/userService'
+import { getFileStorage } from '../services/index'
+import { FollowersData } from '../types'
 
 const Friends: React.FC = () => {
 
-  const userID = userInfo?.userInfo.id
-  const [friendlist, setFriendlist] = useState<FriendData[]>()
-  const {id} = useParams<string>()
-  const {onError} = UseNotifications()
-  const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/"
+  const user = useAuthStore((state) => state.user);
+  const [friendlist, setFriendlist] = useState<FollowersData[]>();
+  const { id } = useParams<string>();
+  const userId = Number(id);
+  const publicFolder = getFileStorage();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const { data } = await useGetFriendList(id as string)
+        const payload = {
+          id: id
+        }
+        const { data } = await getFollowers(payload);
         setFriendlist(data)
       } catch(err) {
-        onError(err as string)
       }
     }
     fetchData()
-  }, [userID])
+  }, [user?.id])
 
   return (
     <>
-        {userID === id ? (
+        {user?.id === id ? (
           <>
             <Navbar />
             <div className="flex">
@@ -73,7 +74,7 @@ const Friends: React.FC = () => {
         ): (
           <>
             <Navbar />
-            <Cover id={id ?? ''}/>
+            <Cover id={userId ?? 0}/>
             <div className="p-5">
               <p className="font-bold text-gray-600 text-xl mb-5">Friend List</p>
               {friendlist?.map((friend) => (

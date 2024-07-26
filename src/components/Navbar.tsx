@@ -10,12 +10,12 @@ const Navbar: React.FC = () => {
   const logout = useAuthStore((state) => state.logout);
   const user = useAuthStore((state) => state.user);
   const [usersList, setUsersList] = useState<UserDetailData[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/";
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await searchUsers({ search: searchQuery })
+      const { data } = await searchUsers(searchQuery);
       setUsersList(data)
     }
     fetchData()
