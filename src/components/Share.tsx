@@ -1,16 +1,18 @@
-import React, { useEffect, useState, useRef, RefObject } from 'react'
-import { createPost } from '../services/postService'
+import React, { useEffect, useState, useRef, RefObject } from 'react';
+import { createPost } from '../services/postService';
 import useAuthStore from '../store/authStore';
 
 
 const Share: React.FC = () => {
 
   const [file, setFile] = useState<File | null>();
-  const desc: RefObject<HTMLInputElement> = useRef(null);
+  const title: RefObject<HTMLInputElement> = useRef(null);
+  const desc: RefObject<HTMLTextAreaElement> = useRef(null);
   const user = useAuthStore((state) => state.user);
 
   interface NewPost {
     userId: number | undefined 
+    title: string
     desc: string
     image?: string
   }
@@ -19,6 +21,7 @@ const Share: React.FC = () => {
     e.preventDefault()
     const newPost: NewPost = {
       userId: user?.id,
+      title: title.current?.value!,
       desc: desc.current?.value!
     }
     if(file){
@@ -50,14 +53,20 @@ const Share: React.FC = () => {
       <input 
         type="text" 
         className="w-full mb-4 px-4 py-2 rounded-lg border focus:outline-none focus:ring focus:border-blue-500 font-semibold"
-        placeholder="What's on your mind?"
-        ref={desc}/>
+        placeholder="Title"
+        ref={title}/>
+      <textarea
+        className="w-full mb-4 px-4 py-2 rounded-lg border focus:outline-none focus:ring focus:border-blue-500 font-semibold"
+        placeholder="Description"
+        ref={desc}
+        rows={4}>
+      </textarea>
        {file && (
         <div className="text-blue-700 py-1 rounded-md w-[20%] font-bold text-lg">{file.name}</div>
        )} 
        <div className="flex justify-between items-center">
         <label 
-          className="block bg-blue-500 text-white font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-blue-600 transform transition-transform hover:-translate-y-1"
+          className="block bg-darkcyan text-white font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-midcyan transform transition-transform hover:-translate-y-1"
           htmlFor='fileinput'
         >
           Upload File
@@ -70,14 +79,14 @@ const Share: React.FC = () => {
         </label>
         <form action="" onClick={handleSubmit}>
           <button
-            className="block bg-green-500 text-white font-semibold rounded-lg px-4 py-2 cursor-pointer hover:bg-green-600 transform transition-transform hover:-translate-y-1"
+            className="block bg-cyan text-white font-semibold rounded-lg px-3 py-2 cursor-pointer hover:bg-midcyan transform transition-transform hover:-translate-y-1"
             type='submit'>
-            Share
+            Post
           </button>
         </form>
        </div>
     </div>
-  )
+  );
 }
 
-export default Share
+export default Share;

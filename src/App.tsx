@@ -17,6 +17,7 @@ const App:React.FC = () => {
         {/* <Route path='/' element={userInfo?.isLoggedIn ? <Home /> : <Login />}/>  */}
         <Route path='/register' element={<Register />}/>
         <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Home />}/>
         <Route path='/profile/:id' element={<Profile />}/>
         <Route path='/friends/:id' element={<Friends />}/>
         <Route path='/settings' element={<Settings />}/>

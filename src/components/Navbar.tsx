@@ -1,9 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useContext, useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+import { FaHome } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5"
+import { FaLayerGroup } from "react-icons/fa";
+import { IoPerson } from "react-icons/io5";
 
-import useAuthStore from '../store/authStore'
-import { UserDetailData } from '../types'
-import { searchUsers } from '../services/userService'
+import useAuthStore from '../store/authStore';
+import { UserDetailData } from '../types';
+import { searchUsers } from '../services/userService';
 
 const Navbar: React.FC = () => {
 
@@ -26,8 +30,8 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <div className="h-16 bg-blue-600 flex items-center px-5">
-        <div className="w-[10%]">
+    <div className="h-16 bg-darkcyan flex items-center px-5">
+        <div className="w-[20%]">
           <h1 className='text-white font-semibold text-2xl'>temuka</h1>
         </div>
         <div className="w-[40%] ml-10 flex justify-center">
@@ -38,11 +42,11 @@ const Navbar: React.FC = () => {
           />
           {searchQuery ? (
             usersList.length ? (
-              <div className="bg-white absolute top-14 rounded-2xl px-2 py-2 shadow-md left-50 w-[38%] flex flex-col gap-1">
+              <div className="bg-white absolute top-14 rounded-2xl px-2 py-2 shadow-md left-50 w-[40%] flex flex-col gap-1">
                 {usersList.map(user => (
-                  <Link to={`/profile/${user._id}`}>
+                  <Link to={`/profile/${user.ID}`}>
                     <div className="flex p-1 items-center gap-2 hover:bg-slate-100 cursor-pointer rounded-md">
-                      {user?.profilePicture === "" ? (
+                      {user?.ProfilePicture === "" ? (
                         <img
                           className="h-10 w-10 object-cover rounded-full border-4 border-white"
                           src={publicFolder + "DefaultPP.jpg"}
@@ -52,17 +56,17 @@ const Navbar: React.FC = () => {
                       (
                         <img
                           className="h-10 w-10 object-cover rounded-full border-4 border-white"
-                          src={publicFolder + user?.profilePicture}
+                          src={publicFolder + user?.ProfilePicture}
                           alt="User photo profile"
                         />
                       )}
-                      <p className='text-slate-800 font-semibold'>{user?.username}</p>
+                      <p className='text-slate-800 font-semibold'>{user?.Username}</p>
                     </div>
                   </Link>
                 ))}
               </div>
             ): (
-              <div className="bg-white absolute top-14 rounded-2xl px-2 py-2 shadow-md left-50 w-[38%]">
+              <div className="bg-white absolute top-14 rounded-2xl px-2 py-2 shadow-md left-50 w-[35%]">
                 <p className='text-blue-600 font-semibold text-center'>No results</p>
               </div>
             )
@@ -70,20 +74,19 @@ const Navbar: React.FC = () => {
             <div></div>
           )}
         </div>
-        <div className="w-[30%] flex gap-8 justify-center">
-          <Link to={"/"} className='text-white font-medium text-md transform transition-transform hover:-translate-y-0.5'>Home</Link>
-          <Link to={`/profile/${Number(user?.id)}`} className='text-white font-medium text-md transform transition-transform hover:-translate-y-0.5'>Profile</Link>
-          <Link to={`/friends/${Number(user?.id)}`} className='text-white font-medium text-md transform transition-transform hover:-translate-y-0.5'>Friends</Link>
-        </div>
-        <div className="w-[20%] flex justify-end">
-          <button 
-            className='text-blue-600 bg-white hover:bg-gray-300 px-3 py-2 rounded-md font-semibold text-md transform transition-transform hover:-translate-y-1'
-            onClick={logout}>
-              Logout
-          </button>
+        <div className="w-[50%] flex gap-12 justify-end">
+          <Link to={"/"}>
+            <FaHome className='text-white hover:bg-cyan rounded-full text-4xl p-1'/>
+          </Link>
+          <Link to={`/communities/${Number(user?.id)}`}>
+            <FaLayerGroup className='text-white hover:bg-cyan rounded-full text-4xl p-1'/>
+          </Link>
+          <Link to={`/profile/${Number(user?.id)}`}>
+            <IoPerson className='text-white hover:bg-cyan rounded-full text-4xl p-1'/>
+          </Link>
         </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

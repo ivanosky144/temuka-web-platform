@@ -1,5 +1,5 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from 'react';
+import Navbar from '../components/Navbar';
 
 const NotFound: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const NotFound: React.FC = () => {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default NotFound
+export default NotFound;

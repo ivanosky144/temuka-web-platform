@@ -1,8 +1,8 @@
-import React from 'react'
-import Feed from '../components/Feed'
-import Leftbar from '../components/Leftbar'
-import Navbar from '../components/Navbar'
-import Rightbar from '../components/Rightbar'
+import React from 'react';
+import Feed from '../components/Feed';
+import Leftbar from '../components/Leftbar';
+import Navbar from '../components/Navbar';
+import Rightbar from '../components/Rightbar';
 
 const Home: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Home: React.FC = () => {
             <Rightbar />
         </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

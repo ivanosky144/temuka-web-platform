@@ -15,13 +15,14 @@ const Feed: React.FC = () => {
   useEffect(()=> {
     const fetchData = async () => {
       try {
-        const { data } = await getTimelinePosts(Number(user?.id))
-        setPosts(data)
+        const { data } = await getTimelinePosts(1);
+        console.log(data)
+        setPosts(data);
       } catch(err){
       }
     }
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
     
 
   return (
@@ -29,16 +30,18 @@ const Feed: React.FC = () => {
       <Share />
       {posts.map((p) => (
         <Post 
-          _id={p._id || ""}
-          userId={p.userId}
-          desc={p.desc}
-          image={p?.image || ""}
-          likes={p.likes || []}
-          createdAt = {p.createdAt || new Date}
+          ID={p.ID || ""}
+          UserID={p.UserID}
+          Title={p.Title}
+          Description={p.Description}
+          Image={p?.Image || ""}
+          Upvote={p.Upvote || []}
+          CreatedAt={p.CreatedAt || new Date}
+          UpdatedAt={p.UpdatedAt || new Date}
         />
       ))}
     </div>
-  )
+  );
 }
 
-export default Feed
+export default Feed;

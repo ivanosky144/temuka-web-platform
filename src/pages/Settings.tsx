@@ -1,15 +1,15 @@
 import React, {useState, useContext, useEffect} from 'react'
 import Leftbar from '../components/Leftbar'
 import Navbar from '../components/Navbar'
-import useAuthStore from '../store/authStore'
-import { getFileStorage } from '../services/index'
-import { getUserDetail, updateUser } from '../services/userService'
-import { UserDetailData } from '../types'
+import useAuthStore from '../store/authStore';
+import { getFileStorage } from '../services/index';
+import { getUserDetail, updateUser } from '../services/userService';
+import { UserDetailData } from '../types';
 
 const Settings: React.FC = () => {
 
     const user = useAuthStore((state) => state.user);
-    const [userdata, setUserdata] = useState<UserDetailData>()
+    const [userdata, setUserdata] = useState<UserDetailData>();
     const publicFolder = getFileStorage();
     
     const [uploadedPhoto, setUploadedPhoto] = useState("");
@@ -33,14 +33,14 @@ const Settings: React.FC = () => {
     const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const userdetail: UserDetailData = {
-            username: username,
+            Username: username,
         }
         if(profilePictureFile){
           try {
-            const formData = new FormData()
-            formData.append('file', profilePictureFile)
+            const formData = new FormData();
+            formData.append('file', profilePictureFile);
             // await useUpload(formData)        
-            userdetail.profilePicture = profilePictureFile.name
+            userdetail.ProfilePicture = profilePictureFile.name;
           } catch(err) {
             //   onError(err as string)
           }
@@ -49,9 +49,9 @@ const Settings: React.FC = () => {
         }
     
         try {
-          const res = await updateUser(Number(user?.id), userdetail)
-          setLoading(!loading)
-          setUploadedPhoto("")
+          const res = await updateUser(Number(user?.id), userdetail);
+          setLoading(!loading);
+          setUploadedPhoto("");
           if(res) {
             // onSuccess("User has been updated")
           }
@@ -65,15 +65,15 @@ const Settings: React.FC = () => {
 
     const handlePhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
-        const file = e.currentTarget.files?.[0]
-        setProfilePictureFile(file)
+        const file = e.currentTarget.files?.[0];
+        setProfilePictureFile(file);
 
         if(file){
           try {
-            const formData = new FormData()
-            formData.append('file', file)
+            const formData = new FormData();
+            formData.append('file', file);
             // await useUpload(formData)
-            setUploadedPhoto(file.name)        
+            setUploadedPhoto(file.name);      
           } catch(err) {
             //   onError(err as string)
           }
@@ -105,7 +105,7 @@ const Settings: React.FC = () => {
                         />
                         )} */}
                         {uploadedPhoto === "" ? (
-                            userdata?.profilePicture === "" ? (
+                            userdata?.ProfilePicture === "" ? (
                                 <img
                                 className="h-32 w-32 object-cover rounded-full border-4 border-white mb-3"
                                 src={publicFolder + 'DefaultPP.jpg'}
@@ -114,7 +114,7 @@ const Settings: React.FC = () => {
                             ) : (
                                 <img
                                 className="h-32 w-32 object-cover rounded-full border-4 border-white mb-3"
-                                src={publicFolder + userdata?.profilePicture}
+                                src={publicFolder + userdata?.ProfilePicture}
                                 alt="User photo profile"
                                 />
                             )
@@ -141,7 +141,7 @@ const Settings: React.FC = () => {
                                 className="appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none focus:border-blue-500 shadow-md font-semibold max-w-[85%]"
                                 id="text"
                                 type="text"
-                                placeholder={userdata?.username}
+                                placeholder={userdata?.Username}
                                 onChange={(e)=>setUsername(e.target.value)}
                             />
                         </div>
@@ -153,7 +153,7 @@ const Settings: React.FC = () => {
                                 className="appearance-none border rounded w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none focus:border-blue-500 shadow-md font-semibold max-w-[85%]"
                                 id="email"
                                 type="email"
-                                placeholder={userdata?.email}
+                                placeholder={userdata?.Email}
                             />
                         </div>
                     </div>
@@ -169,7 +169,7 @@ const Settings: React.FC = () => {
             </div>
         </div>
     </>
-  )
+  );
 }
 
-export default Settings
+export default Settings;

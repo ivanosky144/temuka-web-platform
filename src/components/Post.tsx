@@ -1,19 +1,20 @@
-import ThumbUp from '@mui/icons-material/ThumbUp'
-import Favorite from '@mui/icons-material/Favorite'
-import {useState, useEffect, useContext} from 'react'
-import axios from 'axios'
-import {format} from 'timeago.js'
-import { Link } from 'react-router-dom'
-import useAuthStore from '../store/authStore'
-import { PostData, UserDetailData } from '../types'
-import { getUserDetail } from '../services/userService'
-import { getPostDetail, likePost } from '../services/postService'
+import { BiSolidUpvote } from "react-icons/bi";
+import { BiSolidDownvote } from "react-icons/bi";
+import { FaCommentDots } from "react-icons/fa";
+import { MdSaveAlt } from "react-icons/md";
+import {useState, useEffect} from 'react';
+import {format} from 'timeago.js';
+import { Link } from 'react-router-dom';
+import useAuthStore from '../store/authStore';
+import { PostData, UserDetailData } from '../types';
+import { getUserDetail } from '../services/userService';
+import { getPostDetail, likePost } from '../services/postService';
 
-const Post: React.FC<PostData> = ({_id = '', userId, desc, image, likes, createdAt}) => {
+const Post: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, CreatedAt, UpdatedAt}) => {
 
     const user = useAuthStore((state) => state.user);
     const currentUserID = user?.id;
-    const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/";
+    const publicFolder = process.env.REACT_APP_BACKEND_URI + "/image/";
     const [postUserdata, setPostUserdata] = useState<UserDetailData>();
 
     const [recentLikes, setRecentLikes] = useState<number>(0);
@@ -22,85 +23,94 @@ const Post: React.FC<PostData> = ({_id = '', userId, desc, image, likes, created
     useEffect(()=> {
       const fetchData = async () => {
         try {
-          const { data } = await getUserDetail(Number(currentUserID));
-          setPostUserdata(data)
+          const { data } = await getUserDetail(1);
+          setPostUserdata(data);
         } catch(err) {
-          console.log(err)
+          console.log(err);
         }
-      }
-      fetchData()
-    }, [])
+      };
+      fetchData();
+    }, []);
 
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const { data } = await getPostDetail(Number(_id))
-          setRecentLikes(data.likes?.length ?? 0)
+          const { data } = await getPostDetail(Number(ID));
+          setRecentLikes(data.likes?.length ?? 0);
         } catch(err) {
-          console.log(err)
+          console.log(err);
         }
-      }
+      };
       fetchData()
-    }, [loading])
+    }, [loading]);
 
     const getFileComponent = () => {
-      const extension = image?.substring(image.lastIndexOf('.') + 1).toLowerCase()
+      const extension = Image?.substring(Image.lastIndexOf('.') + 1).toLowerCase()
       if (extension === 'png' || extension === 'jpg') {
-        return <img src={publicFolder + image} alt="" className="w-1/2 h-1/2" />
+        return <img src={publicFolder + Image} alt="" className="w-1/2 h-1/2" />
       } else if (extension === 'mp4') {
-        return <video controls className="w-1/2 h-1/2"><source src={publicFolder + image} type="video/mp4" /></video>
+        return <video controls className="w-1/2 h-1/2"><source src={publicFolder + Image} type="video/mp4" /></video>
       } else {
         return null
       }
-    }
+    };
 
-    const handleLike = async () => {
+    const handleUpvote = async () => {
       try {
         setLoading(!loading)
       }
       catch(err) {
         console.log(err)
       }
-    }
+    };
 
     return (
       <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2">
-        <div className="flex items-center mb-4 gap-2">
+        <div className="flex items-center gap-1">
           <img
-              className="h-12 w-12 object-cover rounded-full  mr-2"
-              src={publicFolder + postUserdata?.profilePicture}
+              className="h-8 w-8 object-cover rounded-full  mr-2"
+              src={'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.webp'}
               alt="user photo profile"
           />
-          <div className="flex flex-col gap-0.5">
-            <Link 
-              to={`/profile/${userId}`}
-              className='text-slate-800 text-md font-bold'
-            >
-              {postUserdata?.username}
-            </Link>
-            <div className="text-gray-400 font-md">
-                {createdAt && format(new Date(createdAt).toLocaleString())}
-            </div>
+          <Link 
+            to={`/profile/${UserID}`}
+            className='text-slate-800 text-md font-bold'
+          >
+            {postUserdata?.Username}
+          </Link>
+          <div className="text-gray-400 font-md">
+            · {CreatedAt && format(new Date(CreatedAt).toLocaleString())}
           </div>
         </div>
-        <p className="mb-5 text-slate-700 font-semibold">
-            {desc}
-        </p>
-        {image && getFileComponent()}
-        <div className='flex items-center gap-5 mt-2'>
-          <div className="flex gap-1 items-center">
-            <ThumbUp 
-              className='cursor-pointer hover:scale-105 hover:text-blue-500'
-              onClick={handleLike}
+        <div className="flex flex-col mb-5 gap-2">
+          <p className="text-slate-700 font-bold text-2xl">
+              {Title}
+          </p>
+          <p className="text-slate-700 font-semibold">
+              {Description}
+          </p>
+        </div>
+        {Image && getFileComponent()}
+        <div className='flex items-center gap-8 mt-2'>
+          <div className="flex gap-5 items-center bg-gray-200 px-2 py-1 rounded-xl">
+            <div className="flex gap-2 items-center">
+              <BiSolidUpvote 
+                className='cursor-pointer hover:scale-105 hover:text-blue-500'
+                onClick={handleUpvote}
+              />
+              <p className='font-bold text-gray-500'>Vote</p>
+              <p className='text-slate-600 font-bold'>{recentLikes}</p>
+            </div>
+            <BiSolidDownvote
+              className='cursor-pointer hover:scale-105 hover:text-blue-500' 
             />
-            <p className='text-slate-600 text-sm font-semibold'>{recentLikes}</p>
           </div>
-            <Favorite className='cursor-pointer hover:scale-105 hover:text-red-500'/>
+          <MdSaveAlt className='cursor-pointer hover:scale-105 hover:text-red-500 text-xl'/>
+          <FaCommentDots className='cursor-pointer hover:scale-105 hover:text-cyan text-xl'/>
         </div>
       </div>
-    )
+    );
   }
 
-export default Post
+export default Post;
 
-//655b7cbc6c85a7d7e061ab38

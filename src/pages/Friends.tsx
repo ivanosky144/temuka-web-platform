@@ -42,9 +42,9 @@ const Friends: React.FC = () => {
                   <p className="font-bold text-gray-600 text-xl mb-5">Your Friends</p>
                   <div className="flex flex-col gap-3">
                     {friendlist?.map((friend) => (
-                      <Link to={`/profile/${friend._id}`}>
+                      <Link to={`/profile/${friend.ID}`}>
                         <div className="flex gap-5 items-center bg-white p-4 rounded-md hover:scale-105 shadow-md">
-                          {friend.profilePicture === "" ? 
+                          {friend.ProfilePicture === "" ? 
                             (
                               <img
                                 className="h-9 w-9 object-cover rounded-full  mr-2"
@@ -55,14 +55,14 @@ const Friends: React.FC = () => {
                             (
                               <img
                                 className="h-9 w-9 object-cover rounded-full  mr-2"
-                                src={publicFolder + friend?.profilePicture}
+                                src={publicFolder + friend?.ProfilePicture}
                                 alt="user photo profile"
                               />
                             )
                           }
                           <div className="flex flex-col gap-1">
-                            <p className='text-slate-800 font-bold'>{friend.username}</p>
-                            <p className='text-slate-500 font-medium text-xs'>{friend.email}</p>
+                            <p className='text-slate-800 font-bold'>{friend.Username}</p>
+                            <p className='text-slate-500 font-medium text-xs'>{friend.Email}</p>
                           </div>
                         </div>
                       </Link>
@@ -74,11 +74,11 @@ const Friends: React.FC = () => {
         ): (
           <>
             <Navbar />
-            <Cover id={userId ?? 0}/>
+            <Cover ID={userId ?? 0}/>
             <div className="p-5">
               <p className="font-bold text-gray-600 text-xl mb-5">Friend List</p>
               {friendlist?.map((friend) => (
-                <Link to={`/profile/${friend._id}`}>
+                <Link to={`/profile/${friend.ID}`}>
                   <div className="flex justify-between items-center bg-gray-100 p-4 rounded-md hover:scale-105">
                     <img
                       className="h-9 w-9 object-cover rounded-full  mr-2"
@@ -86,8 +86,8 @@ const Friends: React.FC = () => {
                       alt="user photo profile"
                     />
                     <div className="flex flex-col gap-1">
-                      <p className='text-slate-800 font-bold'>{friend.username}</p>
-                      <p className='text-slate-500 font-medium text-xs'>{friend.email}</p>
+                      <p className='text-slate-800 font-bold'>{friend.Username}</p>
+                      <p className='text-slate-500 font-medium text-xs'>{friend.Email}</p>
                     </div>
                   </div>
                 </Link>

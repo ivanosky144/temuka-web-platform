@@ -1,36 +1,40 @@
 export interface FollowersData {
-    _id: string
-    username: string
-    profilePicture: string
-    email: string
+    ID: string
+    Username: string
+    ProfilePicture: string
+    Email: string
 }
 
 export interface ProfileID {
-    id: number
+    ID: number
 }
 
 export interface PostData {
-    _id?: any
-    userId: string
-    desc: string
-    image?: string
-    likes?: string[]
-    createdAt?: Date
+    ID?: any
+    UserID: string
+    Title: string
+    Description: string
+    Image?: string
+    Upvote?: string[]
+    CreatedAt: Date
+    UpdatedAt: Date
 }
 
 export interface UserDetailData {
-    _id?: string
-    username: string
-    email?: string
-    profilePicture?: string
-    followings?: number[]
-    followers?: number[]
+    ID?: string
+    Username: string
+    Displayname?: string
+    Desc?: string
+    Email?: string
+    ProfilePicture?: string
+    Followings?: number[]
+    Followers?: number[]
 }
 
 export interface UserAuthData {
-    username?: string
-    email: string
-    password: string
+    Username?: string
+    Email: string
+    Password: string
 }
 
 export interface GeneralAPIResponse<T> {

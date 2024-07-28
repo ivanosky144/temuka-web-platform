@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Rightbar: React.FC = () => {
   return (
@@ -19,7 +19,7 @@ const Rightbar: React.FC = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Rightbar
+export default Rightbar;

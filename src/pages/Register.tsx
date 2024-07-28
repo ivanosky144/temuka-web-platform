@@ -34,15 +34,15 @@ const Register: React.FC = () => {
 
   return (
     <div className="bg-gray-100 h-screen flex">        
-      <div className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-400 w-[50%] rounded-r-3xl relative">
-        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-4 block">Welcome to <br /> Temuka</label>
+      <div className="bg-gradient-to-r from-cyan via-cyan to-lightcyan w-[50%] relative">
+        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-12 block">Welcome to <br /> Temuka</label>
       </div>
-      <div className="bg-gray-100 w-[50%] flex justify-center items-center">
+      <div className="bg-gray-100 w-[60%] flex justify-center items-center">
         <form 
           className="flex flex-col items-center gap-5 bg-white shadow-md py-20 px-20 rounded-lg"
           onSubmit={handleRegister}
         >
-          <label htmlFor="" className="text-blue-600 font-bold text-2xl">SIGN UP</label>
+          <label htmlFor="" className="text-cyan font-bold text-2xl">SIGN UP</label>
           <div className="flex flex-col gap-5">
             <input 
               type="text" 
@@ -74,7 +74,7 @@ const Register: React.FC = () => {
               Already have an account? Login now
             </Link>
           </label>
-          <button type='submit' className="text-white bg-blue-600 rounded-md hover:bg-blue-500 font-semibold py-2 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
+          <button type='submit' className="text-white bg-cyan rounded-md hover:bg-midcyan font-semibold py-2 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
             Register
           </button>
         </form>
