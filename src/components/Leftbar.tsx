@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5"
 import { FaLayerGroup } from "react-icons/fa";
-import { IoPerson } from "react-icons/io5";
+import { FaUniversity } from "react-icons/fa";
+import { IoSchool } from "react-icons/io5";
 import useAuthStore from '../store/authStore';
 import { getUserDetail } from '../services/userService';
 import { UserDetailData } from '../types';
@@ -33,65 +34,73 @@ const Leftbar: React.FC = () => {
   }, []);
 
   return (
-    <div className='w-[20%] p-4 flex flex-col gap-8 bg-gray-50 mt-5'>
+    <div className='w-[20%] p-4 flex flex-col gap-8 bg-white mt-5'>
       <div className="flex flex-col gap-4">
-        <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+        <div className="px-3 rounded-md hover:bg-gray-100 hover:scale-1.05 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <FaHome className='text-darkcyan'/>
                 <Link to={`/`}>
-                  <p className='text-darkcyan font-semibold text-md'>Feed</p>
+                  <p className='text-darkcyan font-bold text-lg'>Beranda</p>
                 </Link>
             </div>
         </div>
-        <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
-            <div className="flex items-center gap-5">
-                <IoPerson className='text-darkcyan'/>
-                <Link to={`/profile/${Number(user?.id)}`}>
-                  <p className='text-darkcyan font-semibold text-md'>Profile</p>
-                </Link>
-            </div>
-        </div>
-        <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+        <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <FaLayerGroup className='text-darkcyan'/>
                 <Link to={`/communities/${user?.id}`}>
-                  <p className='text-darkcyan font-semibold text-md'>Communities</p>
+                  <p className='text-darkcyan font-bold text-lg'>Komunitas</p>
                 </Link>
             </div>
         </div>
-        <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+        <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
+            <div className="flex items-center gap-5">
+                <FaUniversity className='text-darkcyan'/>
+                <Link to={`/university`}>
+                  <p className='text-darkcyan font-bold text-lg'>Universitas</p>
+                </Link>
+            </div>
+        </div>
+        <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
+            <div className="flex items-center gap-5">
+                <IoSchool className='text-darkcyan'/>
+                <Link to={`/major`}>
+                  <p className='text-darkcyan font-bold text-lg'>Prodi</p>
+                </Link>
+            </div>
+        </div>
+        <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <IoSettings className='text-darkcyan'/>
                 <Link to={`/settings`}>
-                  <p className='text-darkcyan font-semibold text-md'>Settings</p>
+                  <p className='text-darkcyan font-bold text-lg'>Pengaturan</p>
                 </Link>
             </div>
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <h2 className='text-gray-500 font-semibold text-xl'>Communities</h2>
+        <h2 className='text-white font-bold text-xl bg-darkcyan p-2 rounded-xl opacity-60'>Komunitas</h2>
         <div className="flex flex-col gap-4">
-          <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+          <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <SiLibreofficemath className='text-darkcyan'/>
                   <Link to={`/community/Mathematics`}>
-                    <p className='text-darkcyan font-semibold text-md'>Mathematics</p>
+                    <p className='text-darkcyan font-bold text-lg'>Matematika</p>
                   </Link>
               </div>
           </div>
-          <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+          <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <PiBooksFill className='text-darkcyan'/>
                   <Link to={`/community/Physics`}>
-                    <p className='text-darkcyan font-semibold text-md'>Physics</p>
+                    <p className='text-darkcyan font-bold text-lg'>Fisika</p>
                   </Link>
               </div>
           </div>
-          <div className="px-3 rounded-md hover:bg-white cursor-pointer py-2">
+          <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <FaComputer className='text-darkcyan'/>
                   <Link to={`/community/ComputerScience`}>
-                    <p className='text-darkcyan font-semibold text-md'>Computer Science</p>
+                    <p className='text-darkcyan font-bold text-lg'>Ilmu Komputer</p>
                   </Link>
               </div>
           </div>
