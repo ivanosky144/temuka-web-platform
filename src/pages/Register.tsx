@@ -34,21 +34,18 @@ const Register: React.FC = () => {
 
   return (
     <div className="bg-gray-100 h-screen flex">        
-      <div className="bg-gradient-to-r from-cyan via-cyan to-lightcyan w-[50%] relative">
-        <label className="absolute text-white font-extrabold text-[2.5rem] top-20 left-12 block">Welcome to <br /> Temuka</label>
-      </div>
-      <div className="bg-gray-100 w-[60%] flex justify-center items-center">
+      <div className="bg-gray-100 w-[100%] flex justify-center items-center">
         <form 
           className="flex flex-col items-center gap-5 bg-white shadow-md py-20 px-20 rounded-lg"
           onSubmit={handleRegister}
         >
-          <label htmlFor="" className="text-cyan font-bold text-2xl">SIGN UP</label>
+          <label htmlFor="" className="text-gold font-extrabold text-3xl">Create your account</label>
           <div className="flex flex-col gap-5">
             <input 
               type="text" 
               placeholder="Username"
               name="username" 
-              className="bg-gray-200 p-2 rounded-md w-64 outline-blue-100 hover:outline-blue-200" 
+              className="bg-gray-100 p-2 rounded-md w-72 outline-blue-100 hover:outline-blue-100" 
               value={formData.username}
               onChange={handleChange}
             />
@@ -56,7 +53,7 @@ const Register: React.FC = () => {
               type="text" 
               placeholder="Email" 
               name="email"
-              className="bg-gray-200 p-2 rounded-md w-64 outline-blue-100 hover:outline-blue-200" 
+              className="bg-gray-100 p-2 rounded-md w-72 outline-blue-100 hover:outline-blue-100" 
               value={formData.email}
               onChange={handleChange}
             />
@@ -64,7 +61,7 @@ const Register: React.FC = () => {
               type="password" 
               placeholder="Password" 
               name="password"
-              className="bg-gray-200 p-2 rounded-md w-64 outline-blue-100 hover:outline-blue-200" 
+              className="bg-gray-100 p-2 rounded-md w-72 outline-blue-100 hover:outline-blue-100" 
               value={formData.password}
               onChange={handleChange}
             />
@@ -74,7 +71,7 @@ const Register: React.FC = () => {
               Already have an account? Login now
             </Link>
           </label>
-          <button type='submit' className="text-white bg-cyan rounded-md hover:bg-midcyan font-semibold py-2 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
+          <button type='submit' className="text-black bg-yellow rounded-md hover:bg-yellow font-semibold py-2 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
             Register
           </button>
         </form>
