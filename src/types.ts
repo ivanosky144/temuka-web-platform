@@ -1,3 +1,5 @@
+import internal from "stream"
+
 export interface FollowersData {
     ID: string
     Username: string
@@ -37,6 +39,18 @@ export interface UserAuthData {
     Password: string
 }
 
+export interface UniversityData {
+    ID?: number
+    Name: string
+    Summary: string
+    Website: string
+    TotalReviews: number
+    Photo: string
+    Location: string
+    Stars: number
+    Type: string
+}
+
 export interface GeneralAPIResponse<T> {
     status: boolean
     data: T
@@ -53,5 +67,5 @@ export type GeneralUserRegisterResponse = GeneralAPIResponse<UserAuthData>
 export type GeneralUserLoginResponse = GeneralAPIResponse<UserAuthData> & { token: string }
 export type GeneralPostResponse = GeneralAPIResponse<PostData[]>
 export type GeneralFollowerListResponse = GeneralAPIResponse<FollowersData[]>
-
+export type GeneralUniversitiesResponse = GeneralAPIResponse<UniversityData[]>
 
