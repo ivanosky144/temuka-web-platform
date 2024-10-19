@@ -27,7 +27,6 @@ const Feed: React.FC = () => {
 
   return (
     <div className='w-[60%] bg-gray-50 min-h-screen px-5 py-8'>
-      <Share />
       {posts.map((p) => (
         <Post 
           ID={p.ID || ""}

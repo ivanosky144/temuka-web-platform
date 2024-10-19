@@ -78,7 +78,7 @@ const Leftbar: React.FC = () => {
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <h2 className='text-white font-bold text-xl bg-darkcyan p-2 rounded-xl opacity-60'>Komunitas</h2>
+        <h2 className='font-bold p-1 opacity-60 text-lg'>Komunitas</h2>
         <div className="flex flex-col gap-4">
           <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">

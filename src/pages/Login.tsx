@@ -39,13 +39,13 @@ const Login: React.FC = () => {
           className="flex flex-col items-center gap-5 bg-white shadow-md py-20 px-20 rounded-lg h-[60%]"
           onSubmit={handleLogin}
         >
-          <label htmlFor="" className="text-gold font-extrabold text-3xl">Welcome back!</label>
+          <label htmlFor="" className="font-extrabold text-3xl">Login</label>
           <div className="flex flex-col gap-5 font-semibold">
             <input 
               type="text" 
               placeholder="Email" 
               name="email" 
-              className="bg-gray-100 p-2 rounded-md w-72 outline-blue-100 hover:outline-blue-200 text-lg" 
+              className="p-2 rounded-md w-72 outline outline-offset outline-gray-400 outline-1 text-lg" 
               value={formData.email}
               onChange={handleChange}
             />
@@ -53,7 +53,7 @@ const Login: React.FC = () => {
               type="password" 
               placeholder="Password" 
               name="password" 
-              className="bg-gray-100 p-2 rounded-md w-72 outline-blue-100 hover:outline-blue-200 text-lg" 
+              className="p-2 rounded-md w-72 outline outline-offset outline-gray-400 outline-1  text-lg" 
               value={formData.password}
               onChange={handleChange}
             />
@@ -63,8 +63,8 @@ const Login: React.FC = () => {
               Don't have an account? Register now
             </Link>
           </label>
-          <button type='submit' className="text-black bg-yellow rounded-md hover:bg-yellow font-semibold py-2 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
-            Login
+          <button type='submit' className="text-black bg-yellow rounded-xl hover:bg-yellow font-semibold py-3 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
+            Sign in
           </button>
         </form>
       </div>

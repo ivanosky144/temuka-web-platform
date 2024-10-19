@@ -1,6 +1,6 @@
 import API_KEY from ".";
 
-export function loginUser(payload: any) {
+export async function loginUser(payload: any) {
     return fetch(`${API_KEY}/api/auth/login`, {
         method: 'POST',
         headers: {
@@ -10,7 +10,7 @@ export function loginUser(payload: any) {
     }).then((res) => res.json());
 }
 
-export function registerUser(payload: any) {
+export async function registerUser(payload: any) {
     return fetch(`${API_KEY}/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -20,7 +20,7 @@ export function registerUser(payload: any) {
     }).then((res) => res.json());
 }
 
-export function resetPassword(payload: any, id: number) {
+export async function resetPassword(payload: any, id: number) {
     return fetch(`${API_KEY}/api/auth/resetPassword/${id}`, {
         method: 'POST',
         headers: {
