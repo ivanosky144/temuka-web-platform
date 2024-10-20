@@ -4,6 +4,7 @@ import Share from './Share'
 import { PostData } from '../types'
 import { getTimelinePosts } from '../services/postService'
 import useAuthStore from '../store/authStore'
+import PostCard from './PostCard'
 
 
 const Feed: React.FC = () => {
@@ -27,7 +28,7 @@ const Feed: React.FC = () => {
 
   return (
     <div className='w-[60%] bg-gray-50 min-h-screen px-5 py-8'>
-      {posts.map((p) => (
+      {/* {posts.map((p) => (
         <Post 
           ID={p.ID || ""}
           UserID={p.UserID}
@@ -38,7 +39,8 @@ const Feed: React.FC = () => {
           CreatedAt={p.CreatedAt || new Date}
           UpdatedAt={p.UpdatedAt || new Date}
         />
-      ))}
+      ))} */}
+      <PostCard />
     </div>
   );
 }
