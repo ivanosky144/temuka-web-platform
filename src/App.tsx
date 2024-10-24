@@ -8,7 +8,7 @@ import Profile from './pages/Profile'
 import Friends from './pages/Friends'
 import Settings from './pages/Settings'
 import NotFound from './pages/NotFound'
-import UniversityPage from './pages/UniversityPage'
+import Universities from './pages/Universities'
 import CommunityPage from './pages/CommunityPage'
 
 const App:React.FC = () => {
@@ -20,7 +20,7 @@ const App:React.FC = () => {
         <Route path='/register' element={<Register />}/>
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Home />}/>
-        <Route path='/university' element={<UniversityPage />}/>
+        <Route path='/university' element={<Universities />}/>
         <Route path='/community/:id' element={<CommunityPage />} />
         <Route path='/profile/:id' element={<Profile />}/>
         <Route path='/friends/:id' element={<Friends />}/>

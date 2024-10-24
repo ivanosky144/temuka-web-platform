@@ -7,7 +7,7 @@ import UniversityCard from '../components/UniversityCard';
 import { UniversityData } from "../types";
 import { universityData } from '../templates/university';
 
-const UniversityPage: React.FC = () => {
+const Universities: React.FC = () => {
 
   const [universities, setUniversities] = useState<UniversityData[]>([]);
 
@@ -36,9 +36,11 @@ const UniversityPage: React.FC = () => {
                   Website={u.Website}
                   Photo={u.Photo}
                   TotalReviews={u.TotalReviews}
+                  TotalMajors={u.TotalMajors}
                   Location={u.Location}
                   Stars={u.Stars}
                   Type={u.Type}
+                  Accreditation={u.Accreditation}
                 />
               ))}
             </div>
@@ -47,4 +49,4 @@ const UniversityPage: React.FC = () => {
   );
 }
 
-export default UniversityPage;
+export default Universities;

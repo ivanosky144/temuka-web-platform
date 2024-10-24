@@ -45,10 +45,12 @@ export interface UniversityData {
     Summary: string
     Website: string
     TotalReviews: number
+    TotalMajors: number
     Photo: string
     Location: string
     Stars: number
     Type: string
+    Accreditation: string
 }
 
 export interface GeneralAPIResponse<T> {

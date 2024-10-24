@@ -6,9 +6,11 @@ export const universityData = [
         "Website": "https://ugm.ac.id/",
         "Photo": "assets/UGMLogo.png",
         "TotalReviews": 100,
+        "TotalMajors": 40,
         "Location": "Kabupaten Sleman, D.I Yogjakarta",
         "Stars": 4.5,
-        "Type": "Negeri"
+        "Type": "Negeri",
+        "Accreditation": "Unggul"
     },
     {
         "ID": 2,
@@ -17,9 +19,11 @@ export const universityData = [
         "Website": "https://www.itb.ac.id/",
         "Photo": "assets/ITBLogo.png",
         "TotalReviews": 95,
+        "TotalMajors": 30,
         "Location": "Bandung, Jawa Barat",
         "Stars": 4.7,
-        "Type": "Negeri"
+        "Type": "Negeri",
+        "Accreditation": "Unggul"
     },
     {
         "ID": 3,
@@ -28,9 +32,11 @@ export const universityData = [
         "Website": "https://www.ui.ac.id/",
         "Photo": "assets/UILogo.png",
         "TotalReviews": 120,
+        "TotalMajors": 50,
         "Location": "Depok, Jawa Barat",
         "Stars": 4.6,
-        "Type": "Negeri"
+        "Type": "Negeri",
+        "Accreditation": "Unggul"
     },
     {
         "ID": 4,
@@ -39,8 +45,10 @@ export const universityData = [
         "Website": "https://www.unair.ac.id/",
         "Photo": "assets/UnairLogo.png",
         "TotalReviews": 85,
+        "TotalMajors": 50,
         "Location": "Surabaya, Jawa Timur",
         "Stars": 4.4,
-        "Type": "Negeri"
+        "Type": "Negeri",
+        "Accreditation": "Unggul"
     }
 ];
