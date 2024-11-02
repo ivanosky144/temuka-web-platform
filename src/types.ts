@@ -39,6 +39,11 @@ export interface UserAuthData {
     Password: string
 }
 
+export interface TuitionFee {
+    Min: number
+    Max: number
+}
+
 export interface UniversityData {
     ID?: number
     Name: string
@@ -51,6 +56,8 @@ export interface UniversityData {
     Stars: number
     Type: string
     Accreditation: string
+    Tuition: TuitionFee
+    AcceptanceRate: number
 }
 
 export interface GeneralAPIResponse<T> {

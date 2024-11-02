@@ -10,7 +10,12 @@ export const universityData = [
         "Location": "Kabupaten Sleman, D.I Yogjakarta",
         "Stars": 4.5,
         "Type": "Negeri",
-        "Accreditation": "Unggul"
+        "Accreditation": "Unggul",
+        "Tuition": {
+            "Min": 5000000,
+            "Max": 15000000
+        },
+        "AcceptanceRate": 5.5
     },
     {
         "ID": 2,
@@ -23,7 +28,12 @@ export const universityData = [
         "Location": "Bandung, Jawa Barat",
         "Stars": 4.7,
         "Type": "Negeri",
-        "Accreditation": "Unggul"
+        "Accreditation": "Unggul",
+        "Tuition": {
+            "Min": 5000000,
+            "Max": 15000000
+        },
+        "AcceptanceRate": 5.5
     },
     {
         "ID": 3,
@@ -36,7 +46,12 @@ export const universityData = [
         "Location": "Depok, Jawa Barat",
         "Stars": 4.6,
         "Type": "Negeri",
-        "Accreditation": "Unggul"
+        "Accreditation": "Unggul",
+        "Tuition": {
+            "Min": 5000000,
+            "Max": 15000000
+        },
+        "AcceptanceRate": 5.5
     },
     {
         "ID": 4,
@@ -49,6 +64,11 @@ export const universityData = [
         "Location": "Surabaya, Jawa Timur",
         "Stars": 4.4,
         "Type": "Negeri",
-        "Accreditation": "Unggul"
+        "Accreditation": "Unggul",
+        "Tuition": {
+            "Min": 5000000,
+            "Max": 15000000
+        },
+        "AcceptanceRate": 5.5
     }
 ];

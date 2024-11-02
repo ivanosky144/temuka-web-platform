@@ -41,6 +41,8 @@ const Universities: React.FC = () => {
                   Stars={u.Stars}
                   Type={u.Type}
                   Accreditation={u.Accreditation}
+                  Tuition={u.Tuition}
+                  AcceptanceRate={u.AcceptanceRate}
                 />
               ))}
             </div>
