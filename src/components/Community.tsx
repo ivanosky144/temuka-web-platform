@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import { RiTeamLine } from "react-icons/ri";
 import { GrNotes } from "react-icons/gr";
 import { TbMessageCircleQuestion } from "react-icons/tb";
 import { FaChevronDown } from "react-icons/fa";
+import { getCommunityDetail, joinCommunity } from "../services/communityService";
+import { CommunityData } from "../types";
+import useAuthStore from "../store/authStore";
 
 const Community: React.FC = () => {
+    
+    const [communityDetail, setCommunityDetail] = useState<CommunityData>();
+    const user = useAuthStore((state) => state.user);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await getCommunityDetail(1);
+                setCommunityDetail(data);
+            } catch(err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleJoin = () => {
+        const payload = {
+            user_id: user?.id
+        };
+
+        joinCommunity(payload, 10);
+    };
+
     return (
         <div className="w-[80%]">
             <div className="flex flex-col p-3 relative w-[90%]">
@@ -22,7 +49,7 @@ const Community: React.FC = () => {
                 <div className="flex justify-between ml-[180px] mt-2 relative">
                     <h1 className="font-bold text-3xl">Matematika</h1>
                     <div className="flex gap-2 items-center">
-                        <button className="bg-darkcyan rounded-xl py-2 w-[100px] font-bold text-white shadow-md hover:opacity-80">Join</button>
+                        <button className="bg-darkcyan rounded-xl py-2 w-[100px] font-bold text-white shadow-md hover:opacity-80" onClick={handleJoin}>Gabung</button>
                         <button className="bg-yellow rounded-xl py-2 w-[150px] font-bold text-darkcyan shadow-md hover:opacity-90">Buat Post</button>
                     </div>
                 </div>
@@ -33,8 +60,8 @@ const Community: React.FC = () => {
                 </div>
                 <div className="flex flex-col gap-5 w-[30%]">
                     <div className="bg-gray-100 opacity-90 m-3 p-3 rounded-lg shadow-md">
-                        <h3 className="text-3xl font-bold mb-5">About</h3>
-                        <p className="font-bold text-lg">Tempat buat kalian yang mencintai Matematika dan bidang-bidang turunannya</p>
+                        <h3 className="text-3xl font-bold mb-5">Deskripsi</h3>
+                        <p className="font-bold text-md">Tempat buat kalian yang mencintai Matematika dan bidang-bidang turunannya</p>
                         <div className="flex w-[40%] justify-between mt-5">
                             <div className="flex flex-col">
                                 <p className="font-extrabold text-xl">10k</p>

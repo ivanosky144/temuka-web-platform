@@ -24,7 +24,6 @@ const Leftbar: React.FC = () => {
     const fetchData = async () => {
       try {
         const { data } = await getUserDetail(1);
-        console.log(data);
         setUserdata(data);
       } catch(err) {
         console.log(err);

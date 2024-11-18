@@ -9,12 +9,37 @@ import { FaWallet } from "react-icons/fa";
 import { GiUpgrade } from "react-icons/gi";
 import { CgWebsite } from "react-icons/cg";
 import { FaLocationDot } from "react-icons/fa6";
+import { FaStarHalfAlt } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
 
 enum UniversityDetailMenu {
     OVERVIEW = "overview",
     MAJORS = "majors",
     REVIEWS = "reviews"
 }
+
+const StarRating: React.FC<{ stars: number }> = ({ stars }) => {
+    const fullStars = Math.floor(stars);
+    const partialStar = stars % 1;
+    const emptyStars = 5 - fullStars - (partialStar > 0 ? 1 : 0);
+
+    const renderStar = (filledPercentage: number, key: string) => (
+        <div className="relative w-8 h-8" key={key}>
+            <FaRegStar className="absolute text-gray-200 text-3xl" /> 
+            <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${filledPercentage}%`}}>
+                <FaStar className="text-gold text-3xl"/>
+            </div>
+        </div>
+    );
+
+    return (
+        <div className="flex gap-1">
+            {[...Array(fullStars)].map((_, index) => renderStar(100, `full-${index}`))}
+            {partialStar > 0 && renderStar(partialStar * 100, "partial")}
+            {[...Array(emptyStars)].map((_, index) => renderStar(0, `empty-${index}`))}
+        </div>
+    );
+};
 
 const UniversityDetail: React.FC = () => {
 
@@ -36,11 +61,11 @@ const UniversityDetail: React.FC = () => {
             <Navbar />
             <div className="flex">
                 <Leftbar />
-                <div className="p-10 w-[70%]">
+                <div className="p-10 w-[70%] rounded-md border-2 mt-4">
                     <div className="flex flex-col gap-5">
                         <div className="flex justify-between items-center p-3 rounded-md">
                             <div className="flex gap-4 items-center">
-                                <img src={"assets/UnairLogo.png"} alt="" className="w-24 h-24"/>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Logo-Branding-UNAIR-biru.png" alt={universityDetail?.Name} className="w-24 h-24"/>
                                 <div className="flex flex-col gap-2">
                                     <div className="text-4xl font-bold">{universityDetail?.Name}</div>
                                     <div className="flex gap-2">
@@ -49,18 +74,12 @@ const UniversityDetail: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex gap-2 text-4xl">
-                                <FaStar className="text-gold"/>
-                                <FaStar className="text-gold"/>
-                                <FaStar className="text-gold"/>
-                                <FaStar className="text-gold"/>
-                                <FaStar className="text-gold"/>
-                            </div>
+                            <StarRating stars={Number(universityDetail?.Stars)}/>
                         </div>
                         <div className="flex p-3 gap-8 items-center">
-                            <button className={selectedMenu === UniversityDetailMenu.OVERVIEW ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-yellow-200 rounded-t-lg"}>Ringkasan</button>
-                            <button className={selectedMenu === UniversityDetailMenu.MAJORS ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-yellow-200 rounded-t-lg"}>Program Studi</button>
-                            <button className={selectedMenu === UniversityDetailMenu.REVIEWS ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-yellow-200 rounded-t-lg"}>Ulasan</button>
+                            <button onClick={() => setSelectedMenu(UniversityDetailMenu.OVERVIEW)} className={selectedMenu === UniversityDetailMenu.OVERVIEW ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-gray-200 p-2 rounded-t-lg"}>Ringkasan</button>
+                            <button onClick={() => setSelectedMenu(UniversityDetailMenu.MAJORS)} className={selectedMenu === UniversityDetailMenu.MAJORS ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-gray-200 p-2 rounded-t-lg"}>Program Studi</button>
+                            <button onClick={() => setSelectedMenu(UniversityDetailMenu.REVIEWS)} className={selectedMenu === UniversityDetailMenu.REVIEWS ? "text-lg font-semibold text-brow-800 bg-yellow p-2 rounded-t-lg": "text-lg font-semibold hover:bg-gray-200 p-2 rounded-t-lg"}>Ulasan</button>
                         </div>
                         <div className="px-4 w-[80%]">
                             {selectedMenu === UniversityDetailMenu.OVERVIEW ? 
@@ -83,12 +102,18 @@ const UniversityDetail: React.FC = () => {
                                     </div>                          
                                     <div className="flex items-center gap-5">
                                         <CgWebsite className="w-12 h-12 w-[10%] text-darkcyan"/>
-                                        <p className="font-semibold text-2xl w-[90%] underline text-cyan cursor-pointer">{universityDetail?.Website}</p>
+                                        <a href={universityDetail?.Website} className="font-semibold text-2xl w-[90%] underline text-cyan cursor-pointer" rel="noopener noreferrer" target="_blank">
+                                            {universityDetail?.Website}
+                                        </a>
                                     </div>                                               
                                 </div> : selectedMenu === UniversityDetailMenu.MAJORS ? 
                                 <div>
 
-                                </div> : selectedMenu === UniversityDetailMenu.REVIEWS
+                                </div> : selectedMenu === UniversityDetailMenu.REVIEWS ?
+                                <div>
+
+                                </div> : 
+                                <div></div>
                             }
                         </div>
                     </div>

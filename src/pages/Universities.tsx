@@ -27,7 +27,7 @@ const Universities: React.FC = () => {
         <Navbar />
         <div className="flex">
             <Leftbar />
-            <div className="flex flex-col w-[70%]">
+            <div className="flex flex-col w-[100%]">
               {universities.map((u) => (
                 <UniversityCard 
                   ID={u.ID}

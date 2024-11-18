@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
 
   const handleSearchUsers = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
-  }
+  };
 
   return (
     <div className="h-16 bg-white flex items-center px-5 border-b-2 border-gray-200">

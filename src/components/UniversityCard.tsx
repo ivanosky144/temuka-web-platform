@@ -4,7 +4,7 @@ import { UniversityData } from "../types";
 
 const UniversityCard: React.FC<UniversityData> = ({ID, Name, Summary, Website, Photo, TotalReviews, TotalMajors, Location, Stars, Type, Accreditation}) => {
     return (
-        <div className="p-4 flex flex-col gap-2 w-[60%]">
+        <div className="p-4 flex flex-col gap-2 w-[70%]">
             <div className="flex flex-col gap-4 rounded-md shadow-lg p-5 hover:shadow-xl cursor-pointer" key={ID}>
                 <div className="flex justify-between items-center">
                     <div className="flex gap-3 items-center">

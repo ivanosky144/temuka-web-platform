@@ -9,7 +9,7 @@ import Friends from './pages/Friends'
 import Settings from './pages/Settings'
 import NotFound from './pages/NotFound'
 import Universities from './pages/Universities'
-import CommunityPage from './pages/CommunityPage'
+import CommunityPage from './pages/CommunityDetail'
 import UniversityDetail from './pages/UniversityDetail'
 
 const App:React.FC = () => {

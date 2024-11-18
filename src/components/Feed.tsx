@@ -17,7 +17,6 @@ const Feed: React.FC = () => {
     const fetchData = async () => {
       try {
         const { data } = await getTimelinePosts(1);
-        console.log(data)
         setPosts(data);
       } catch(err){
       }

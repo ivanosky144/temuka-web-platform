@@ -11,6 +11,15 @@ export interface ProfileID {
     ID: number
 }
 
+export interface CommunityData {
+    ID?: any
+    Name: string
+    Description: string
+    Rules: string
+    MemberCount: number
+    LogoPicture: string
+}
+
 export interface PostData {
     ID?: any
     UserID: string
