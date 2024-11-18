@@ -1,11 +1,9 @@
-import API_KEY from ".";
+import API_KEY, { getAuthHeaders } from ".";
 
 export async function getUniversityDetail(id: number) {
     const res = await fetch(`${API_KEY}/api/university/${id}`, {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: getAuthHeaders(),
     });
     return res.json();
 }
@@ -13,9 +11,7 @@ export async function getUniversityDetail(id: number) {
 export async function getUniversities() {
     const res = await fetch(`${API_KEY}/api/university`, {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: getAuthHeaders(),
     });
     return res.json();
 }
@@ -34,9 +30,7 @@ export async function addReview(payload: any) {
 export async function getUniversityReviews(id: number) {
     const res = await fetch(`${API_KEY}/api/review/university/${id}`, {
         method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: getAuthHeaders(),
     });
     return res.json();
 }
