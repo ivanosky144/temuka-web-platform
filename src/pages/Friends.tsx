@@ -36,7 +36,7 @@ const Friends: React.FC = () => {
         {user?.id === id ? (
           <>
             <Navbar />
-            <div className="flex">
+            <div className="flex pt-16">
                 <Leftbar />
                 <div className="p-5">
                   <p className="font-bold text-gray-600 text-xl mb-5">Your Friends</p>

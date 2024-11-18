@@ -5,7 +5,7 @@ const NotFound: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen pt-16">
         <div className="flex flex-col gap-5 items-center">
           <h1 className='text-8xl font-bold text-blue-800'>
             404

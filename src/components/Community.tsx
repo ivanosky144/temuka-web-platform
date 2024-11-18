@@ -56,7 +56,6 @@ const Community: React.FC = () => {
             </div>
             <div className="flex mt-10 w-[90%] p-4">
                 <div className="flex flex-col w-[70%]">
-                    <PostCard />
                 </div>
                 <div className="flex flex-col gap-5 w-[30%]">
                     <div className="bg-gray-100 opacity-90 m-3 p-3 rounded-lg shadow-md">

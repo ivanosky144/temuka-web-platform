@@ -20,8 +20,8 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await searchUsers(searchQuery);
-      setUsersList(data)
+      // const { data } = await searchUsers(searchQuery);
+      // setUsersList(data)
     }
     fetchData()
   }, [searchQuery])
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="h-16 bg-white flex items-center px-5 border-b-2 border-gray-200">
+    <div className="fixed h-16 bg-white flex items-center px-5 border-b-2 border-gray-200 w-[100%]">
         <div className="w-[20%]">
           <h1 className='text-darkcyan font-extrabold text-3xl'>temuka</h1>
         </div>

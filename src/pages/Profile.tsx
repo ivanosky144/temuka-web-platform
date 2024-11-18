@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   return (
     <>
         <Navbar />
-        <div className="flex">
+        <div className="flex pt-16">
             <Leftbar />
             <ProfileFeed ID={1 ?? ''}/>
         </div>

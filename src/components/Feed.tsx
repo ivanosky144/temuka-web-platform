@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Post from './Post'
-import Share from './Share'
 import { PostData } from '../types'
 import { getTimelinePosts } from '../services/postService'
 import useAuthStore from '../store/authStore'
@@ -17,6 +15,7 @@ const Feed: React.FC = () => {
     const fetchData = async () => {
       try {
         const { data } = await getTimelinePosts(1);
+        console.log("data", data)
         setPosts(data);
       } catch(err){
       }
@@ -27,8 +26,9 @@ const Feed: React.FC = () => {
 
   return (
     <div className='w-[60%] bg-gray-50 min-h-screen px-5 py-8'>
-      {/* {posts.map((p) => (
-        <Post 
+      
+      {posts.map((p) => (
+        <PostCard
           ID={p.ID || ""}
           UserID={p.UserID}
           Title={p.Title}
@@ -38,8 +38,7 @@ const Feed: React.FC = () => {
           CreatedAt={p.CreatedAt || new Date}
           UpdatedAt={p.UpdatedAt || new Date}
         />
-      ))} */}
-      <PostCard />
+      ))}
     </div>
   );
 }

@@ -59,7 +59,7 @@ const UniversityDetail: React.FC = () => {
     return (
         <>
             <Navbar />
-            <div className="flex">
+            <div className="flex pt-16">
                 <Leftbar />
                 <div className="p-10 w-[70%] rounded-md border-2 mt-4">
                     <div className="flex flex-col gap-5">

@@ -10,7 +10,7 @@ import { PostData, UserDetailData } from '../types';
 import { getUserDetail } from '../services/userService';
 import { getPostDetail, likePost } from '../services/postService';
 
-const PostCard: React.FC = () => {
+const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, CreatedAt, UpdatedAt}) => {
 
     // const user = useAuthStore((state) => state.user);
     // const currentUserID = user?.id;
@@ -65,7 +65,7 @@ const PostCard: React.FC = () => {
     // };
 
     return (
-      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2">
+      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2" key={ID}>
         <div className="flex items-center gap-1">
           <img
               className="h-8 w-8 object-cover rounded-full  mr-2"
@@ -84,7 +84,7 @@ const PostCard: React.FC = () => {
         </div>
         <div className="flex flex-col mb-5 gap-2">
           <p className="text-slate-700 font-bold text-2xl">
-              Perbedaan kultur anak SMA dan SMK
+              {Title}
           </p>
           <p className="text-slate-700 font-semibold">
               Gw sering banget nemuin anak SMA yang bertingkah superior ke anak SMK seperti anak SMK lebih nakal, kurang terdidik, dan lain-lain. Benak yang sudah tertanam di masyarakat tentang anak SMK pun juga kurang baik.

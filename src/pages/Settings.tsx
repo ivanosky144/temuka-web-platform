@@ -85,7 +85,7 @@ const Settings: React.FC = () => {
   return (
     <>
         <Navbar />
-        <div className="flex">
+        <div className="flex pt-16">
             <Leftbar />
             <div className="px-8 py-6 max-w-2xl w-full">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Settings</h2>

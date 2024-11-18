@@ -11,8 +11,8 @@ export async function createPost(payload: any) {
     return res.json();
 }
 
-export async function getTimelinePosts(userId: number) {
-    const res = await fetch(`${API_KEY}/api/post/timeline/${userId}`, {
+export async function getTimelinePosts(id: number) {
+    const res = await fetch(`${API_KEY}/api/post/timeline/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

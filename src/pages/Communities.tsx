@@ -6,7 +6,7 @@ const Community: React.FC = () => {
   return (
         <>
             <Navbar />
-            <div className="flex">
+            <div className="flex pt-16">
                 <Leftbar />
             </div>
         </>  

@@ -23,8 +23,8 @@ const Leftbar: React.FC = () => {
   useEffect(()=> {
     const fetchData = async () => {
       try {
-        const { data } = await getUserDetail(1);
-        setUserdata(data);
+        // const { data } = await getUserDetail(1);
+        // setUserdata(data);
       } catch(err) {
         console.log(err);
       }
