@@ -10,7 +10,9 @@ const Home: React.FC = () => {
         <Navbar />
         <div className="flex pt-16">
             <Leftbar />
-            <Feed />
+            <div className="mx-[20%] w-[100%]">
+              <Feed />
+            </div>
             <Rightbar />
         </div>
     </>

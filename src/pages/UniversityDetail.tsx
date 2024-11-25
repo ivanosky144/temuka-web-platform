@@ -61,7 +61,7 @@ const UniversityDetail: React.FC = () => {
             <Navbar />
             <div className="flex pt-16">
                 <Leftbar />
-                <div className="p-10 w-[70%] rounded-md border-2 mt-4">
+                <div className="p-10 w-[100%] rounded-md border-2 mt-4 mx-[20%]">
                     <div className="flex flex-col gap-5">
                         <div className="flex justify-between items-center p-3 rounded-md">
                             <div className="flex gap-4 items-center">

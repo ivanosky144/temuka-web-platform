@@ -10,7 +10,9 @@ const CommunityPage: React.FC = () => {
             <Navbar />
             <div className="flex pt-16">
                 <Leftbar />
-                <Community />
+                <div className="mx-[20%] w-[100%]">
+                    <Community />
+                </div>
             </div>
         </>
     );

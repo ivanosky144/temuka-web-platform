@@ -33,7 +33,7 @@ const Leftbar: React.FC = () => {
   }, []);
 
   return (
-    <div className='w-[20%] p-4 flex flex-col gap-8 bg-white mt-5'>
+    <div className='w-[20%] p-4 flex flex-col gap-8 bg-white mt-5 fixed'>
       <div className="flex flex-col gap-4">
         <div className="px-3 rounded-md hover:bg-gray-100 hover:scale-1.05 cursor-pointer py-2">
             <div className="flex items-center gap-5">

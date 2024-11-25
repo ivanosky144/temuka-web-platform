@@ -34,7 +34,7 @@ const Community: React.FC = () => {
     };
 
     return (
-        <div className="w-[80%]">
+        <div className="w-[100%]">
             <div className="flex flex-col p-3 relative w-[90%]">
                 <img 
                     src="https://t4.ftcdn.net/jpg/02/00/11/87/360_F_200118749_rA5PKAUDD0xeB44ZstUclNdevoGsvnwd.jpg" 
