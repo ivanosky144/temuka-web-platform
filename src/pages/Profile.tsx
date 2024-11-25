@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router';
 import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
-import ProfileFeed from '../components/ProfileFeed';
 
 const Profile: React.FC = () => {
 
@@ -13,7 +12,6 @@ const Profile: React.FC = () => {
         <Navbar />
         <div className="flex pt-16">
             <Leftbar />
-            <ProfileFeed ID={1 ?? ''}/>
         </div>
     </>
   );

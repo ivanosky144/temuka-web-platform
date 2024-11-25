@@ -12,37 +12,51 @@ import { getPostDetail, likePost } from '../services/postService';
 
 const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, CreatedAt, UpdatedAt}) => {
 
-    // const user = useAuthStore((state) => state.user);
-    // const currentUserID = user?.id;
+    const user = useAuthStore((state) => state.user);
+    const currentUserID = user?.id;
+    const [postUserdata, setPostUserdata] = useState<UserDetailData>();
+    const [recentLikes, setRecentLikes] = useState<number>(0);
+
     // const publicFolder = process.env.REACT_APP_BACKEND_URI + "/image/";
-    // const [postUserdata, setPostUserdata] = useState<UserDetailData>();
 
-    // const [recentLikes, setRecentLikes] = useState<number>(0);
-    // const [loading, setLoading] = useState(false);
+    useEffect(()=> {
+      const fetchData = async () => {
+        try {
+          const { data } = await getUserDetail(UserID);
+          setPostUserdata(data);
+        } catch(err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    }, []);
 
-    // useEffect(()=> {
-    //   const fetchData = async () => {
-    //     try {
-    //       const { data } = await getUserDetail(1);
-    //       setPostUserdata(data);
-    //     } catch(err) {
-    //       console.log(err);
-    //     }
-    //   };
-    //   fetchData();
-    // }, []);
+    const getTimeAgo = (date: Date): string => {
+      const now = new Date();
+      const targetDate = new Date(date);
+      const diff = now.getTime() - targetDate.getTime();
 
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       const { data } = await getPostDetail(Number(ID));
-    //       setRecentLikes(data.likes?.length ?? 0);
-    //     } catch(err) {
-    //       console.log(err);
-    //     }
-    //   };
-    //   fetchData()
-    // }, [loading]);
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      const weeks = Math.floor(days / 7);
+      const months = Math.floor(days / 30);
+      const years = Math.floor(days / 365);
+  
+      if (years > 0) return `${years} tahun yang lalu`;
+      if (months > 0) return `${months} bulan yang lalu`;
+      if (weeks > 0) return `${weeks} minggu yang lalu`;
+      if (days > 0) return `${days} hari yang lalu`;
+      if (hours > 0) return `${hours} jam yang lalu`;
+      if (minutes > 0) return `${minutes} menit yang lalu`;
+      return `${seconds} detik yang lalu`;
+    };
+
+    const truncateText = (text: string): string => {
+      return text.substring(0, 500) + "...";
+    };
+
 
     // const getFileComponent = () => {
     //   const extension = Image?.substring(Image.lastIndexOf('.') + 1).toLowerCase()
@@ -55,17 +69,16 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
     //   }
     // };
 
-    // const handleUpvote = async () => {
-    //   try {
-    //     setLoading(!loading)
-    //   }
-    //   catch(err) {
-    //     console.log(err)
-    //   }
-    // };
+    const handleUpvote = async () => {
+      try {
+      }
+      catch(err) {
+        console.log(err)
+      }
+    };
 
     return (
-      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2" key={ID}>
+      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2 hover:bg-gray-50 cursor-pointer" key={ID}>
         <div className="flex items-center gap-1">
           <img
               className="h-8 w-8 object-cover rounded-full  mr-2"
@@ -76,10 +89,10 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
             to={`/community`}
             className='text-slate-800 text-md font-bold'
           >
-            Matematika
+            {postUserdata?.Username}
           </Link>
           <div className="text-gray-400 font-md">
-            · 5 menit yang lalu
+            · {getTimeAgo(CreatedAt)}
           </div>
         </div>
         <div className="flex flex-col mb-5 gap-2">
@@ -87,7 +100,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
               {Title}
           </p>
           <p className="text-slate-700 font-semibold">
-              Gw sering banget nemuin anak SMA yang bertingkah superior ke anak SMK seperti anak SMK lebih nakal, kurang terdidik, dan lain-lain. Benak yang sudah tertanam di masyarakat tentang anak SMK pun juga kurang baik.
+              {truncateText(Description)}
           </p>
         </div>
         <div className='flex items-center gap-8 mt-2'>
@@ -96,8 +109,8 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
               <BiSolidUpvote 
                 className='cursor-pointer hover:scale-105 hover:text-blue-500'
               />
-              <p className='font-bold text-gray-500'>Vote</p>
-              <p className='text-slate-600 font-bold'>15</p>
+              <p className='font-bold text-gray-500' onClick={handleUpvote}>Vote</p>
+              <p className='text-slate-600 font-bold'>{Upvote}</p>
             </div>
             <BiSolidDownvote
               className='cursor-pointer hover:scale-105 hover:text-blue-500' 

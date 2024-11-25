@@ -22,7 +22,7 @@ export interface CommunityData {
 
 export interface PostData {
     ID?: any
-    UserID: string
+    UserID: number
     Title: string
     Description: string
     Image?: string
