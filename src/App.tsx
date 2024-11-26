@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import Universities from './pages/Universities'
 import CommunityPage from './pages/CommunityDetail'
 import UniversityDetail from './pages/UniversityDetail'
+import Submit from './pages/Submit'
 
 const App:React.FC = () => {
 
@@ -21,6 +22,7 @@ const App:React.FC = () => {
         <Route path='/register' element={<Register />}/>
         <Route path='/login' element={<Login />} />
         <Route path='/' element={<Home />}/>
+        <Route path='/submit' element={<Submit />}/>
         <Route path='/university' element={<Universities />}/>
         <Route path='/university/:slug' element={<UniversityDetail />}/>
         <Route path='/community/:id' element={<CommunityPage />} />
