@@ -31,6 +31,28 @@ export interface PostData {
     UpdatedAt: Date
 }
 
+export interface PostCommentData {
+    ID?: any
+    Username: string
+    Userphoto: string
+    PostID: number
+    Content: string
+    Votes: number
+    CreatedAt: Date
+    UpdatedAt: Date
+}
+
+export interface CommentData {
+    ID?: any
+    UserID: number
+    ParentID: number
+    PostID: number
+    Content: string
+    Votes: number
+    CreatedAt: Date
+    UpdatedAt: Date
+}
+
 export interface UserDetailData {
     ID?: string
     Username: string

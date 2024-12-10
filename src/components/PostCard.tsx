@@ -4,7 +4,7 @@ import { FaCommentDots } from "react-icons/fa";
 import { MdSaveAlt } from "react-icons/md";
 import {useState, useEffect} from 'react';
 import {format} from 'timeago.js';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import { PostData, UserDetailData } from '../types';
 import { getUserDetail } from '../services/userService';
@@ -13,6 +13,7 @@ import { getPostDetail, likePost } from '../services/postService';
 const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, CreatedAt, UpdatedAt}) => {
 
     const user = useAuthStore((state) => state.user);
+    const navigate = useNavigate();
     const currentUserID = user?.id;
     const [postUserdata, setPostUserdata] = useState<UserDetailData>();
     const [recentLikes, setRecentLikes] = useState<number>(0);
@@ -78,7 +79,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
     };
 
     return (
-      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2 hover:bg-gray-50 cursor-pointer" key={ID}>
+      <div className="bg-white p-4 shadow-md rounded-lg my-5 flex flex-col gap-2 hover:bg-gray-50 cursor-pointer" key={ID} onClick={() => navigate(`/post/${ID}`)}>
         <div className="flex items-center gap-1">
           <img
               className="h-8 w-8 object-cover rounded-full  mr-2"
