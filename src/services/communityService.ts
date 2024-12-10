@@ -18,7 +18,16 @@ export async function getCommunityDetail(id: number) {
 }
 
 export async function joinCommunity(payload: any, id: number) {
-    const res = await fetch(`${API_KEY}/api/comment/join/${id}`, {
+    const res = await fetch(`${API_KEY}/api/community/join/${id}`, {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(payload)
+    });
+    return res.json();
+}
+
+export async function getJoinedCommunities(payload: any) {
+    const res = await fetch(`${API_KEY}/api/community/user`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify(payload)

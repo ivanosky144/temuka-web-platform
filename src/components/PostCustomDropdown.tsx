@@ -1,28 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa';
+import { getJoinedCommunities } from '../services/communityService';
+import useAuthStore from '../store/authStore';
+import { CommunityData } from '../types';
 
 const PostCustomDropdown: React.FC = () => {
   
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState("Pilih komunitas");
+    const [joinedCommunities, setJoinedCommunities] = useState<CommunityData[]>([]);
+    const user = useAuthStore((state) => state.user);
 
-    const options = [
-        {
-            value: "fisika",
-            label: "Fisika",
-            img: "https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg",
-            },
-            {
-            value: "ilmu-komputer",
-            label: "Ilmu Komputer",
-            img: "https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg",
-            },
-            {
-            value: "pejuang-utbk",
-            label: "Pejuang UTBK",
-            img: "https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg",
-            },
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            const payload = {
+                user_id: user?.id
+            };
+            const { data } = await getJoinedCommunities(payload);
+            setJoinedCommunities(data);
+        };
+        fetchData();
+    }, []);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -44,18 +42,18 @@ const PostCustomDropdown: React.FC = () => {
         </div>
         {isOpen && (
             <div className="absolute mt-2 bg-white shadow-lg rounded-md w-full z-10">
-            {options.map((option) => (
+            {joinedCommunities?.map((option, idx) => (
                 <div
-                key={option.value}
-                onClick={() => handleSelect(option)}
-                className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
+                    key={idx}
+                    onClick={() => handleSelect(option)}
+                    className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
                 >
-                <img
-                    src={option.img}
-                    alt={option.label}
-                    className="h-[20px] w-[20px] rounded-lg mr-2"
-                />
-                <h1 className="font-semibold">{option.label}</h1>
+                    <img
+                        src={option.LogoPicture}
+                        alt={option.Name}
+                        className="h-[20px] w-[20px] rounded-lg mr-2"
+                    />
+                    <h1 className="font-semibold">{option.Name}</h1>
                 </div>
             ))}
             </div>

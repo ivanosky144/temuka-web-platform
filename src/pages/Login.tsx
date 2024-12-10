@@ -14,18 +14,18 @@ const Login: React.FC = () => {
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target
+      const { name, value } = e.target;
       setFormData({
           ...formData,
           [name]: value,
-      })
+      });
   }
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-        await login(formData)
-        navigate("/")
+        await login(formData);
+        navigate("/");
       } catch (err) {
         // onError("Login tidak berhasil, email atau password yang anda masukkan tidak sesuai")
     }
