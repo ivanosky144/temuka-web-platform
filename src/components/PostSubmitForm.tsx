@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import PostCustomDropdown from './PostCustomDropdown';
+import { createPost } from '../services/postService';
+import useAuthStore from '../store/authStore';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 enum PostTypeOption {
     Text = "text",
@@ -9,11 +13,37 @@ enum PostTypeOption {
     Poll = "poll",
     AMA = "ama",
 }
+interface FormData {
+    user_id: number | null
+    title: string
+    description: string
+}
 
 
 const PostSubmitForm: React.FC = () => {
 
+    const navigate = useNavigate();
+    const user = useAuthStore((state) => state.user);
     const [option, setOption] = useState<PostTypeOption>(PostTypeOption.Text);
+    const [postData, setData] = useState<FormData>({
+        user_id: Number(user?.id),
+        title: "",
+        description: "",
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value }= e.target;
+        setData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await createPost(postData);
+        navigate("/");
+    };
 
     return (
         <div className='bg-white p-3 rounded-md w-[40%]'>
@@ -23,7 +53,9 @@ const PostSubmitForm: React.FC = () => {
                         Buat post
                     </h1>
                     <div></div>
-                    <IoClose className="text-2xl hover:bg-gray-100 rounded-full cursor-pointer" />
+                    <Link to={"/"}>
+                        <IoClose className="text-2xl hover:bg-gray-100 rounded-full cursor-pointer" />
+                    </Link>
                 </div>
                 <hr className='border-t-2 border-gray-300'></hr>
                 <PostCustomDropdown />
@@ -33,17 +65,30 @@ const PostSubmitForm: React.FC = () => {
                     <h2 className='p-2 rounded-sm hover:bg-gray-200 cursor-pointer font-semibold' onClick={() => setOption(PostTypeOption.Poll)}>Poll</h2>
                     <h2 className='p-2 rounded-sm hover:bg-gray-200 cursor-pointer font-semibold' onClick={() => setOption(PostTypeOption.AMA)}>AMA</h2>
                 </div>
-                <form action="" className='p-2 flex flex-col gap-4'>
-                    <input type="text" placeholder='Judul' className='p-2 rounded-md border-gray-100 outline-none border-2'/>
+                <form action="" className='p-2 flex flex-col gap-4' onSubmit={handleSubmit}>
+                    <input 
+                        type="text" 
+                        placeholder='Judul' 
+                        name='title'
+                        className='p-2 rounded-md border-gray-100 outline-none border-2'
+                        value={postData.title}
+                        onChange={handleInputChange}
+                    />
                     {option == PostTypeOption.Text ? 
-                        <textarea rows={5} name="" id="" placeholder='Deskripsi' className='p-2 rounded-md outline-none border-gray-100 border-2'>
-                        </textarea> :
+                        <textarea 
+                            rows={5} 
+                            name="description" 
+                            placeholder='Deskripsi' 
+                            className='p-2 rounded-md outline-none border-gray-100 border-2' 
+                            value={postData.description}
+                            onChange={handleInputChange}
+                        /> :
                     option == PostTypeOption.Media ? 
                         <></> : 
                     option == PostTypeOption.Poll ?
                         <></> :
                         <></>}
-                    <button className='bg-darkcyan p-2 rounded-md text-white font-semibold hover:opacity-80 flex-end'>Unggah</button>
+                    <button className='bg-darkcyan p-2 rounded-md text-white font-semibold hover:opacity-80 flex-end' type='submit'>Unggah</button>
                 </form>
             </div>
         </div>
