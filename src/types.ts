@@ -60,8 +60,8 @@ export interface UniversityData {
     Website: string
     TotalReviews: number
     TotalMajors: number
-    Photo: string
-    Location: string
+    Logo: string
+    Address: string
     Stars: number
     Type: string
     Accreditation: string

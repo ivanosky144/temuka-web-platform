@@ -1,7 +1,7 @@
 import API_KEY, { getAuthHeaders } from ".";
 
-export async function getUniversityDetail(id: number) {
-    const res = await fetch(`${API_KEY}/api/university/${id}`, {
+export async function getUniversityDetail(slug: string) {
+    const res = await fetch(`${API_KEY}/api/university/${slug}`, {
         method: 'GET',
         headers: getAuthHeaders(),
     });

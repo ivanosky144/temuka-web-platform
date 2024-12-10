@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import Rightbar from '../components/Rightbar';
 import UniversityCard from '../components/UniversityCard';
 import { UniversityData } from "../types";
-import { universityData } from '../templates/university';
+import { getUniversities } from '../services/universityService';
 
 const Universities: React.FC = () => {
 
@@ -14,7 +14,8 @@ const Universities: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setUniversities(universityData);
+        const { data } = await getUniversities();
+        setUniversities(data);
       } catch(err) {
 
       }
@@ -28,16 +29,16 @@ const Universities: React.FC = () => {
         <div className="flex pt-16">
             <Leftbar />
             <div className="flex flex-col w-[100%] mx-[20%]">
-              {universities.map((u) => (
+              {universities?.map((u) => (
                 <UniversityCard 
                   ID={u.ID}
                   Name={u.Name}
                   Summary={u.Summary}
                   Website={u.Website}
-                  Photo={u.Photo}
+                  Logo={u.Logo}
                   TotalReviews={u.TotalReviews}
                   TotalMajors={u.TotalMajors}
-                  Location={u.Location}
+                  Address={u.Address}
                   Stars={u.Stars}
                   Type={u.Type}
                   Accreditation={u.Accreditation}
