@@ -46,7 +46,7 @@ const Leftbar: React.FC = () => {
         <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <FaLayerGroup className='text-darkcyan'/>
-                <Link to={`/communities/${user?.id}`}>
+                <Link to={`/communities`}>
                   <p className='text-darkcyan font-bold text-lg'>Komunitas</p>
                 </Link>
             </div>
@@ -54,7 +54,7 @@ const Leftbar: React.FC = () => {
         <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <FaUniversity className='text-darkcyan'/>
-                <Link to={`/university`}>
+                <Link to={`/universities`}>
                   <p className='text-darkcyan font-bold text-lg'>Universitas</p>
                 </Link>
             </div>
@@ -62,7 +62,7 @@ const Leftbar: React.FC = () => {
         <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
             <div className="flex items-center gap-5">
                 <IoSchool className='text-darkcyan'/>
-                <Link to={`/major`}>
+                <Link to={`/majors`}>
                   <p className='text-darkcyan font-bold text-lg'>Prodi</p>
                 </Link>
             </div>
