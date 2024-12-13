@@ -37,6 +37,7 @@ export interface PostData {
     Description: string
     Image?: string
     Upvote?: string[]
+    Comments?: number
     CreatedAt: Date
     UpdatedAt: Date
 }

@@ -34,6 +34,7 @@ const Feed: React.FC = () => {
           Description={p.Description}
           Image={p?.Image || ""}
           Upvote={p.Upvote || []}
+          Comments={p?.Comments}
           CreatedAt={p.CreatedAt || new Date}
           UpdatedAt={p.UpdatedAt || new Date}
         />

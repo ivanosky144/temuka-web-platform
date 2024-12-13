@@ -10,7 +10,7 @@ import { PostData, UserDetailData } from '../types';
 import { getUserDetail } from '../services/userService';
 import { getPostDetail, likePost } from '../services/postService';
 
-const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, CreatedAt, UpdatedAt}) => {
+const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, Comments, CreatedAt, UpdatedAt}) => {
 
     const user = useAuthStore((state) => state.user);
     const navigate = useNavigate();
@@ -120,7 +120,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
           <MdSaveAlt className='cursor-pointer hover:scale-105 hover:text-red-500 text-xl'/>
           <div className="bg-gray-200 px-2 py-1 rounded-xl flex items-center gap-2 cursor-pointer hover:opacity-80">
             <FaCommentDots className='cursor-pointer hover:scale-105 hover:text-cyan text-xl'/>
-            <p className="text-slate-600 font-bold">15</p>
+            <p className="text-slate-600 font-bold">{Comments || 0}</p>
           </div>
         </div>
       </div>
