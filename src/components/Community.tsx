@@ -7,16 +7,18 @@ import { FaChevronDown } from "react-icons/fa";
 import { getCommunityDetail, joinCommunity } from "../services/communityService";
 import { CommunityData } from "../types";
 import useAuthStore from "../store/authStore";
+import { useParams } from "react-router";
 
 const Community: React.FC = () => {
     
     const [communityDetail, setCommunityDetail] = useState<CommunityData>();
     const user = useAuthStore((state) => state.user);
+    const { slug } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await getCommunityDetail(1);
+                const { data } = await getCommunityDetail(String(slug));
                 setCommunityDetail(data);
             } catch(err) {
                 console.log(err);
@@ -34,46 +36,46 @@ const Community: React.FC = () => {
     };
 
     return (
-        <div className="w-[100%]">
-            <div className="flex flex-col p-3 relative w-[90%]">
+        <div className="w-[100%] z-50">
+            <div className="flex flex-col p-3 relative w-[100%]">
                 <img 
-                    src="https://t4.ftcdn.net/jpg/02/00/11/87/360_F_200118749_rA5PKAUDD0xeB44ZstUclNdevoGsvnwd.jpg" 
+                    src={communityDetail?.CoverPicture}
                     alt=""
                     className="h-[250px] rounded-lg"
                 />
                 <img
                     className="h-32 w-32 object-cover rounded-3xl mr-2 absolute p-2 bg-white bottom-[-30px] left-[50px]"
-                    src={'https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg'}
+                    src={communityDetail?.LogoPicture}
                     alt="user photo profile"
                 />
                 <div className="flex justify-between ml-[180px] mt-2 relative">
-                    <h1 className="font-bold text-3xl">Matematika</h1>
+                    <h1 className="font-bold text-3xl">{communityDetail?.Name}</h1>
                     <div className="flex gap-2 items-center">
                         <button className="bg-darkcyan rounded-xl py-2 w-[100px] font-bold text-white shadow-md hover:opacity-80" onClick={handleJoin}>Gabung</button>
                         <button className="bg-yellow rounded-xl py-2 w-[150px] font-bold text-darkcyan shadow-md hover:opacity-90">Buat Post</button>
                     </div>
                 </div>
             </div>
-            <div className="flex mt-10 w-[90%] p-4">
+            <div className="flex mt-10 w-[100%] p-4">
                 <div className="flex flex-col w-[70%]">
                 </div>
                 <div className="flex flex-col gap-5 w-[30%]">
                     <div className="bg-gray-100 opacity-90 m-3 p-3 rounded-lg shadow-md">
                         <h3 className="text-3xl font-bold mb-5">Deskripsi</h3>
-                        <p className="font-bold text-md">Tempat buat kalian yang mencintai Matematika dan bidang-bidang turunannya</p>
-                        <div className="flex w-[40%] justify-between mt-5">
+                        <p className="font-bold text-md">{communityDetail?.Description}</p>
+                        <div className="flex w-[40%] justify-between mt-5 gap-3">
                             <div className="flex flex-col">
-                                <p className="font-extrabold text-xl">10k</p>
+                                <p className="font-extrabold text-xl">{communityDetail?.MemberCount || 0}</p>
                                 <p className="font-semibold text-md">Pengikut</p>
                             </div>
                             <div className="flex flex-col">
-                                <p className="font-extrabold text-xl">100</p>
+                                <p className="font-extrabold text-xl">{communityDetail?.PostCount || 0}</p>
                                 <p className="font-semibold text-md">Post</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="text-green-600 text-4xl">●</span>
-                            <p className="font-semibold mt-2">55 Anggota sedang aktif</p>
+                            <p className="font-semibold mt-2">0 Anggota sedang aktif</p>
                         </div>
                     </div>
                     <div className="bg-gray-100 opacity-90 m-3 p-3 rounded-lg shadow-md">

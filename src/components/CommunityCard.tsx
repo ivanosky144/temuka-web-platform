@@ -1,14 +1,17 @@
+import { useNavigate } from "react-router";
 import { CommunityCardData, CommunityData } from "../types";
 import { FaUserGroup } from "react-icons/fa6";
 
-const CommunityCard: React.FC<CommunityCardData> = ({ ID, Name, Description, MembersCount, LogoPicture, CoverPicture }) => {
+const CommunityCard: React.FC<CommunityCardData> = ({ ID, Name, Slug, Description, MembersCount, LogoPicture, CoverPicture }) => {
+
+    const navigate = useNavigate();
 
     const truncateText = (text: string): string => {
         return text.substring(0, 100) + "...";
       };
 
     return (
-        <div className="rounded-md border-2 border-gray-100 flex flex-col relative bg-red cursor-pointer hover:bg-gray-50" key={ID}>
+        <div className="rounded-md border-2 border-gray-100 flex flex-col relative bg-red cursor-pointer hover:bg-gray-50" key={ID} onClick={() => navigate(`/community/${Slug}`)}>
             <img 
                 src={CoverPicture}
                 alt=""

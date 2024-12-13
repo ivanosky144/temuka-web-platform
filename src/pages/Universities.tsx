@@ -33,6 +33,7 @@ const Universities: React.FC = () => {
                 <UniversityCard 
                   ID={u.ID}
                   Name={u.Name}
+                  Slug={u.Slug}
                   Summary={u.Summary}
                   Website={u.Website}
                   Logo={u.Logo}

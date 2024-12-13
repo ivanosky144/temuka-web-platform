@@ -14,6 +14,7 @@ export interface ProfileID {
 export interface CommunityCardData {
     ID?: any
     Name: string
+    Slug: string
     Description: string
     MembersCount: number
     LogoPicture: string
@@ -25,6 +26,7 @@ export interface CommunityData {
     Name: string
     Description: string
     Rules: string
+    PostCount: number
     MemberCount: number
     LogoPicture: string
     CoverPicture: string
@@ -89,6 +91,7 @@ export interface TuitionFee {
 export interface UniversityData {
     ID?: number
     Name: string
+    Slug: string
     Summary: string
     Website: string
     TotalReviews: number

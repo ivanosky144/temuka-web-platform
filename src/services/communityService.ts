@@ -9,8 +9,8 @@ export async function createCommunity(payload: any) {
     return res.json();
 }
 
-export async function getCommunityDetail(id: number) {
-    const res = await fetch(`${API_KEY}/api/community/${id}`, {
+export async function getCommunityDetail(slug: string) {
+    const res = await fetch(`${API_KEY}/api/community/${slug}`, {
         method: 'GET',
         headers: getAuthHeaders(),
     });

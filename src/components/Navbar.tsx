@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed h-16 bg-white flex items-center px-5 border-b-2 border-gray-200 w-[100%]">
+    <div className="fixed h-16 bg-white flex items-center px-5 border-b-2 border-gray-200 w-[100%] z-99">
         <div className="w-[20%]">
           <h1 className='text-darkcyan font-extrabold text-3xl'>temuka</h1>
         </div>

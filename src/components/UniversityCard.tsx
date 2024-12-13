@@ -1,10 +1,14 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import { UniversityData } from "../types";
+import { useNavigate } from "react-router";
 
-const UniversityCard: React.FC<UniversityData> = ({ID, Name, Summary, Website, Logo, TotalReviews, TotalMajors, Address, Stars, Type, Accreditation}) => {
+const UniversityCard: React.FC<UniversityData> = ({ID, Name, Slug, Summary, Website, Logo, TotalReviews, TotalMajors, Address, Stars, Type, Accreditation}) => {
+    
+    const navigate = useNavigate();
+
     return (
-        <div className="p-4 flex flex-col gap-2 w-[90%]">
+        <div className="p-4 flex flex-col gap-2 w-[90%]" onClick={() => navigate(`/university/${Slug}`)}>
             <div className="flex flex-col gap-4 rounded-md shadow-lg p-5 hover:shadow-xl cursor-pointer" key={ID}>
                 <div className="flex justify-between items-center">
                     <div className="flex gap-3 items-center">

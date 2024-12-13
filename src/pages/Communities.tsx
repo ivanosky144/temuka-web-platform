@@ -30,6 +30,7 @@ const Communities: React.FC = () => {
                         <CommunityCard 
                             ID={u.ID}
                             Name={u.Name}
+                            Slug={u.Slug}
                             Description={u.Description}
                             LogoPicture={u.LogoPicture}
                             MembersCount={u.MembersCount}
