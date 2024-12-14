@@ -62,7 +62,7 @@ const Login: React.FC = () => {
               Don't have an account? Register now
             </Link>
           </label>
-          <button type='submit' className="text-black bg-yellow rounded-xl hover:bg-yellow font-semibold py-3 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
+          <button type='submit' className="text-white font-bold bg-cyan rounded-xl hover:bg-midcyan font-semibold py-3 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
             Sign in
           </button>
         </form>

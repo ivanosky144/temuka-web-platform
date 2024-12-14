@@ -28,11 +28,13 @@ const useAuthStore = create<AuthState>((set) => {
 
     const token = localStorage.getItem("token");
     let initialUser: User | null = null;
+    let initialIsLoggedIn = false;
 
     if (token) {
       try {
         const decodedToken =jwtDecode<JwtCustomPayload>(token);
         initialUser = { email: decodedToken.email, token, id: decodedToken.id };
+        initialIsLoggedIn = true;
       } catch(err) {
         console.log("Error decoding token", err);
         localStorage.removeItem("token");
@@ -43,7 +45,7 @@ const useAuthStore = create<AuthState>((set) => {
       user: initialUser,
       loading: false,
       error: null,
-      isLoggedIn: false,
+      isLoggedIn: initialIsLoggedIn,
     
       login: async (payload: any) => {
         set({ loading: true, error: null });

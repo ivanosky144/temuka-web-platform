@@ -8,8 +8,13 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import { BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaComment } from "react-icons/fa";
 
+interface UserData {
+    Username: string
+    ProfilePicture: string
+}
+
 interface PostDetail {
-    username: string
+    user: UserData
     post: PostData
     comments: PostCommentData[]
 }
@@ -59,8 +64,12 @@ const Post: React.FC = () => {
                     <FaCircleChevronLeft className='text-darkcyan w-8 h-8 hover:text-midcyan cursor-pointer' onClick={() => navigate("/")}/>
                     <div className='flex flex-col gap-1 w-[80%]'>
                         <div className="flex items-center gap-1 cursor-pointer">
-                            <img src="/assets/DefaultUser.png" alt="" className='w-8 h-8 border-black border-2 rounded-full'/>
-                            <p className='text-sm font-semibold'>{postData?.username}</p>
+                            <img
+                                className="h-8 w-8 object-cover rounded-full"
+                                src={postData?.user.ProfilePicture || "/assets/DefaultUser.png"}
+                                alt="profile"
+                            />
+                            <p className='text-sm font-semibold'>{postData?.user.Username}</p>
                         </div>
                         <h2 className='font-semibold text-2xl'>{postData?.post.Title}</h2>
                         <p className='text-sm mt-4'>{postData?.post.Description}</p>

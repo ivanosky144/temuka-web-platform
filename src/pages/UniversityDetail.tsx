@@ -96,9 +96,7 @@
                                         </div>     
                                         <div className="flex items-center gap-5">
                                             <FaWallet className="w-12 h-12 w-[10%] text-darkcyan"/>
-                                            {universityDetail?.Tuition && (
-                                                <p className="font-semibold text-2xl w-[90%]">Rp. {universityDetail?.Tuition.Min} - Rp. {universityDetail?.Tuition.Max}</p>
-                                            )}
+                                            <p className="font-semibold text-2xl w-[90%]">Rp. {universityDetail?.MinTuition} - Rp. {universityDetail?.MaxTuition}</p>
                                         </div>
                                         <div className="flex items-center gap-5">
                                             <GiUpgrade className="w-12 h-12 w-[10%] text-darkcyan"/>

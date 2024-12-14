@@ -1,4 +1,4 @@
-const API_KEY = "http://3.25.103.16:3200"
+const API_KEY = "http://localhost:3200"
 
 export function getToken() {
     if (typeof window !== 'undefined') {

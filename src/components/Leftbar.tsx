@@ -80,7 +80,7 @@ const Leftbar: React.FC = () => {
           <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <SiLibreofficemath className='text-darkcyan'/>
-                  <Link to={`/community/Mathematics`}>
+                  <Link to={`/community/matematika`}>
                     <p className='text-darkcyan font-bold text-lg'>Matematika</p>
                   </Link>
               </div>
@@ -88,7 +88,7 @@ const Leftbar: React.FC = () => {
           <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <PiBooksFill className='text-darkcyan'/>
-                  <Link to={`/community/Physics`}>
+                  <Link to={`/community/fisika`}>
                     <p className='text-darkcyan font-bold text-lg'>Fisika</p>
                   </Link>
               </div>
@@ -96,8 +96,8 @@ const Leftbar: React.FC = () => {
           <div className="px-3 rounded-md hover:bg-gray-100 cursor-pointer py-2">
               <div className="flex items-center gap-5">
                   <FaComputer className='text-darkcyan'/>
-                  <Link to={`/community/ComputerScience`}>
-                    <p className='text-darkcyan font-bold text-lg'>Ilmu Komputer</p>
+                  <Link to={`/community/informatika`}>
+                    <p className='text-darkcyan font-bold text-lg'>Informatika</p>
                   </Link>
               </div>
           </div>

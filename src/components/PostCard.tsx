@@ -79,7 +79,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
         <div className="flex items-center gap-1">
           <img
               className="h-8 w-8 object-cover rounded-full  mr-2"
-              src={'https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg'}
+              src={postUserdata?.ProfilePicture || "/assets/DefaultUser.png"}
               alt="profile"
           />
           <Link 

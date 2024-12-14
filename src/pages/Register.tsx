@@ -71,7 +71,7 @@ const Register: React.FC = () => {
               Already have an account? Login now
             </Link>
           </label>
-          <button type='submit' className="text-black bg-yellow rounded-xl hover:bg-yellow font-semibold py-3 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
+          <button type='submit' className="text-white font-bold bg-midcyan rounded-xl hover:bg-lightcyan font-semibold py-3 px-5 w-[100%] transform transition-transform hover:-translate-y-1">
             Register
           </button>
         </form>
