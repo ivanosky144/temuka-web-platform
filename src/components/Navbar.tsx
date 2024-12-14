@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
-import { IoSettings } from "react-icons/io5"
 import { FaSearch } from "react-icons/fa";
 import { FaLayerGroup } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -12,7 +11,7 @@ import { searchUsers } from '../services/userService';
 
 const Navbar: React.FC = () => {
 
-  const logout = useAuthStore((state) => state.logout);
+  // const logout = useAuthStore((state) => state.logout);
   const user = useAuthStore((state) => state.user);
   const [usersList, setUsersList] = useState<UserDetailData[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -20,8 +19,8 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // const { data } = await searchUsers(searchQuery);
-      // setUsersList(data)
+      const { data } = await searchUsers(searchQuery);
+      setUsersList(data)
     }
     fetchData()
   }, [searchQuery])
@@ -55,14 +54,14 @@ const Navbar: React.FC = () => {
                         <img
                           className="h-10 w-10 object-cover rounded-full border-4 border-white"
                           src={publicFolder + "DefaultPP.jpg"}
-                          alt="Default photo profile"
+                          alt="profile"
                         />
                       ) : 
                       (
                         <img
                           className="h-10 w-10 object-cover rounded-full border-4 border-white"
                           src={publicFolder + user?.ProfilePicture}
-                          alt="User photo profile"
+                          alt="profile"
                         />
                       )}
                       <p className='text-slate-800 font-semibold'>{user?.Username}</p>

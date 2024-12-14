@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { FaChevronDown } from 'react-icons/fa';
 import { IoClose } from "react-icons/io5";
 import PostCustomDropdown from './PostCustomDropdown';
 import { createPost } from '../services/postService';
@@ -74,7 +73,7 @@ const PostSubmitForm: React.FC = () => {
                         value={postData.title}
                         onChange={handleInputChange}
                     />
-                    {option == PostTypeOption.Text ? 
+                    {option === PostTypeOption.Text ? 
                         <textarea 
                             rows={5} 
                             name="description" 
@@ -83,9 +82,9 @@ const PostSubmitForm: React.FC = () => {
                             value={postData.description}
                             onChange={handleInputChange}
                         /> :
-                    option == PostTypeOption.Media ? 
+                    option === PostTypeOption.Media ? 
                         <></> : 
-                    option == PostTypeOption.Poll ?
+                    option === PostTypeOption.Poll ?
                         <></> :
                         <></>}
                     <button className='bg-darkcyan p-2 rounded-md text-white font-semibold hover:opacity-80 flex-end' type='submit'>Unggah</button>

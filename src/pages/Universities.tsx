@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Feed from '../components/Feed';
 import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
-import Rightbar from '../components/Rightbar';
 import UniversityCard from '../components/UniversityCard';
 import { UniversityData } from "../types";
 import { getUniversities } from '../services/universityService';

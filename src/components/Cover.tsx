@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { followUser, getUserDetail } from '../services/userService';
+import { getUserDetail } from '../services/userService';
 import { ProfileID, UserDetailData } from '../types';
 import useAuthStore from '../store/authStore';
 
@@ -10,7 +10,6 @@ const Cover: React.FC<ProfileID> = ({ID}) => {
   const [loading, setLoading] = useState(false);
   const user = useAuthStore((state) => state.user);
 
-  const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/";
 
   useEffect(()=> {
     const fetchData = async () => {
@@ -46,7 +45,7 @@ const Cover: React.FC<ProfileID> = ({ID}) => {
             <img
                 className="h-32 w-32 object-cover rounded-full border-4 border-white"
                 src={'https://t3.ftcdn.net/jpg/02/43/51/48/360_F_243514868_XDIMJHNNJYKLRST05XnnTj0MBpC4hdT5.webp'}
-                alt="Top Image"
+                alt="user cover"
                 style={{ zIndex: 1 }}
             />
           <div className="px-4 h-30">

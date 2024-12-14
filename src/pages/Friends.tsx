@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router'
 import Leftbar from '../components/Leftbar'
 import Navbar from '../components/Navbar'
@@ -29,7 +29,7 @@ const Friends: React.FC = () => {
       }
     }
     fetchData()
-  }, [user?.id])
+  }, [id])
 
   return (
     <>
@@ -49,14 +49,14 @@ const Friends: React.FC = () => {
                               <img
                                 className="h-9 w-9 object-cover rounded-full  mr-2"
                                 src={publicFolder + "DefaultPP.jpg"}
-                                alt="user photo profile"
+                                alt="profile"
                               />
                             ) :
                             (
                               <img
                                 className="h-9 w-9 object-cover rounded-full  mr-2"
                                 src={publicFolder + friend?.ProfilePicture}
-                                alt="user photo profile"
+                                alt="profile"
                               />
                             )
                           }
@@ -83,7 +83,7 @@ const Friends: React.FC = () => {
                     <img
                       className="h-9 w-9 object-cover rounded-full  mr-2"
                       src={publicFolder + "Founder.jpg"}
-                      alt="user photo profile"
+                      alt="profile"
                     />
                     <div className="flex flex-col gap-1">
                       <p className='text-slate-800 font-bold'>{friend.Username}</p>

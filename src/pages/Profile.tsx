@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 
 const Profile: React.FC = () => {
 
-  const { id } = useParams<string>();
 
   return (
     <>

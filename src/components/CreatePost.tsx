@@ -1,5 +1,4 @@
 import React from 'react';
-import Share from './Share';
 import { Link } from 'react-router-dom';
 
 const CreatePost: React.FC = () => {

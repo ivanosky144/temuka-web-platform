@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Feed from '../components/Feed';
 import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
-import Rightbar from '../components/Rightbar';
-import { PostData, CommentData, PostCommentData } from '../types';
+import { PostData, PostCommentData } from '../types';
 import { useNavigate, useParams } from 'react-router';
 import { getPostDetail } from '../services/postService';
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaComment } from "react-icons/fa";
-import { MdSaveAlt } from 'react-icons/md';
 
 interface PostDetail {
     username: string
@@ -29,7 +26,7 @@ const Post: React.FC = () => {
             setPostData(data);
         };
         fetchData();
-    }, []);
+    }, [id]);
 
     const getTimeAgo = (date: Date): string => {
         const now = new Date();

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { CommunityCardData, CommunityData } from "../types";
+import { CommunityCardData } from "../types";
 import { FaUserGroup } from "react-icons/fa6";
 
 const CommunityCard: React.FC<CommunityCardData> = ({ ID, Name, Slug, Description, MembersCount, LogoPicture, CoverPicture }) => {
@@ -20,7 +20,7 @@ const CommunityCard: React.FC<CommunityCardData> = ({ ID, Name, Slug, Descriptio
             <img
                 className="h-20 w-20 object-cover rounded-3xl mr-2 absolute p-2 bg-white top-[120px] left-[50px]"
                 src={LogoPicture}
-                alt="user photo profile"
+                alt="community logo"
             />
             <div className="flex justify-between ml-[130px] mt-2 relative">
                 <h1 className="font-bold text-2xl">{Name}</h1>

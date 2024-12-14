@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import PostCard from "./PostCard";
 import { RiTeamLine } from "react-icons/ri";
 import { GrNotes } from "react-icons/gr";
 import { TbMessageCircleQuestion } from "react-icons/tb";
@@ -25,7 +24,7 @@ const Community: React.FC = () => {
             }
         };
         fetchData();
-    }, []);
+    }, [slug]);
 
     const handleJoin = () => {
         const payload = {
@@ -46,7 +45,7 @@ const Community: React.FC = () => {
                 <img
                     className="h-32 w-32 object-cover rounded-3xl mr-2 absolute p-2 bg-white bottom-[-30px] left-[50px]"
                     src={communityDetail?.LogoPicture}
-                    alt="user photo profile"
+                    alt="community detail"
                 />
                 <div className="flex justify-between ml-[180px] mt-2 relative">
                     <h1 className="font-bold text-3xl">{communityDetail?.Name}</h1>

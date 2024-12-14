@@ -20,7 +20,7 @@ const PostCustomDropdown: React.FC = () => {
             setJoinedCommunities(data);
         };
         fetchData();
-    }, []);
+    }, [user?.id]);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 

@@ -20,7 +20,7 @@ const Feed: React.FC = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [user?.id]);
     
 
   return (
@@ -35,8 +35,8 @@ const Feed: React.FC = () => {
           Image={p?.Image || ""}
           Upvote={p.Upvote || []}
           Comments={p?.Comments}
-          CreatedAt={p.CreatedAt || new Date}
-          UpdatedAt={p.UpdatedAt || new Date}
+          CreatedAt={p.CreatedAt || new Date()}
+          UpdatedAt={p.UpdatedAt || new Date()}
         />
       ))}
     </div>

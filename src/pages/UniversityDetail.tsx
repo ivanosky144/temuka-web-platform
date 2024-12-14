@@ -2,14 +2,12 @@
     import { UniversityData } from "../types";
     import Navbar from "../components/Navbar";
     import Leftbar from "../components/Leftbar";
-    import { universityProfile } from '../templates/universityDetail';
     import { FaStar } from "react-icons/fa";
     import { FaBookOpen } from "react-icons/fa";
     import { FaWallet } from "react-icons/fa";
     import { GiUpgrade } from "react-icons/gi";
     import { CgWebsite } from "react-icons/cg";
     import { FaLocationDot } from "react-icons/fa6";
-    import { FaStarHalfAlt } from "react-icons/fa";
     import { FaRegStar } from "react-icons/fa";
     import { useParams } from "react-router";
     import { getUniversityDetail } from "../services/universityService";

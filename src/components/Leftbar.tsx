@@ -5,9 +5,8 @@ import { IoSettings } from "react-icons/io5"
 import { FaLayerGroup } from "react-icons/fa";
 import { FaUniversity } from "react-icons/fa";
 import { IoSchool } from "react-icons/io5";
-import useAuthStore from '../store/authStore';
-import { getUserDetail } from '../services/userService';
-import { UserDetailData } from '../types';
+// import useAuthStore from '../store/authStore';
+// import { UserDetailData } from '../types';
 import { SiLibreofficemath } from "react-icons/si";
 import { FaComputer } from "react-icons/fa6";
 import { PiBooksFill } from "react-icons/pi";
@@ -15,22 +14,21 @@ import { PiBooksFill } from "react-icons/pi";
 
 const Leftbar: React.FC = () => {
 
-  const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/";
-  const [userdata, setUserdata] = useState<UserDetailData>();
-  const user = useAuthStore((state) => state.user);
+  // const [userdata, setUserdata] = useState<UserDetailData>();
+  // const user = useAuthStore((state) => state.user);
 
 
-  useEffect(()=> {
-    const fetchData = async () => {
-      try {
-        // const { data } = await getUserDetail(1);
-        // setUserdata(data);
-      } catch(err) {
-        console.log(err);
-      }
-    }
-    fetchData();
-  }, []);
+  // useEffect(()=> {
+  //   const fetchData = async () => {
+  //     try {
+  //       // const { data } = await getUserDetail(1);
+  //       // setUserdata(data);
+  //     } catch(err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
 
   return (
     <div className='w-[20%] p-4 flex flex-col gap-8 bg-white mt-5 fixed'>

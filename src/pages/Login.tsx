@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginUser } from '../services/authService'
 import useAuthStore from '../store/authStore'
 
 const Login: React.FC = () => {

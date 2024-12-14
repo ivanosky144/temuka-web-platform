@@ -3,22 +3,18 @@ import { BiSolidDownvote } from "react-icons/bi";
 import { FaCommentDots } from "react-icons/fa";
 import { MdSaveAlt } from "react-icons/md";
 import {useState, useEffect} from 'react';
-import {format} from 'timeago.js';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/authStore';
 import { PostData, UserDetailData } from '../types';
 import { getUserDetail } from '../services/userService';
-import { getPostDetail, likePost } from '../services/postService';
 
 const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Image, Upvote, Comments, CreatedAt, UpdatedAt}) => {
 
-    const user = useAuthStore((state) => state.user);
+    // const user = useAuthStore((state) => state.user);
     const navigate = useNavigate();
-    const currentUserID = user?.id;
     const [postUserdata, setPostUserdata] = useState<UserDetailData>();
-    const [recentLikes, setRecentLikes] = useState<number>(0);
+    // const [recentLikes, setRecentLikes] = useState<number>(0);
 
-    // const publicFolder = process.env.REACT_APP_BACKEND_URI + "/image/";
 
     useEffect(()=> {
       const fetchData = async () => {
@@ -30,7 +26,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
         }
       };
       fetchData();
-    }, []);
+    }, [UserID]);
 
     const getTimeAgo = (date: Date): string => {
       const now = new Date();
@@ -84,7 +80,7 @@ const PostCard: React.FC<PostData> = ({ID = '', UserID, Title, Description, Imag
           <img
               className="h-8 w-8 object-cover rounded-full  mr-2"
               src={'https://i.etsystatic.com/23207112/r/il/1d2d41/4925479274/il_fullxfull.4925479274_97lr.jpg'}
-              alt="user photo profile"
+              alt="profile"
           />
           <Link 
             to={`/community`}

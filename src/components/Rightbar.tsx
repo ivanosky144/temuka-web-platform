@@ -1,5 +1,4 @@
 import React from 'react';
-import Share from './Share';
 import CreatePost from './CreatePost';
 import { FaChevronDown } from "react-icons/fa";
 import { FaHatCowboy } from "react-icons/fa6";

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import Leftbar from '../components/Leftbar'
 import Navbar from '../components/Navbar'
 import useAuthStore from '../store/authStore';
@@ -25,7 +25,7 @@ const Settings: React.FC = () => {
             }
         }
         fetchData()
-    }, [loading])
+    }, [loading, user?.id])
 
     const [username, setUsername] = useState<string>('')
     const [profilePictureFile, setProfilePictureFile] = useState<File | null>()
@@ -109,20 +109,20 @@ const Settings: React.FC = () => {
                                 <img
                                 className="h-32 w-32 object-cover rounded-full border-4 border-white mb-3"
                                 src={publicFolder + 'DefaultPP.jpg'}
-                                alt="Default photo profile"
+                                alt="profile"
                                 />
                             ) : (
                                 <img
                                 className="h-32 w-32 object-cover rounded-full border-4 border-white mb-3"
                                 src={publicFolder + userdata?.ProfilePicture}
-                                alt="User photo profile"
+                                alt="profile"
                                 />
                             )
                             ) : (
                             <img
                                 className="h-32 w-32 object-cover rounded-full border-4 border-white mb-3"
                                 src={publicFolder + uploadedPhoto}
-                                alt="Uploaded photo"
+                                alt="profile"
                             />
                         )}
                         <label 

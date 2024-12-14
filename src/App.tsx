@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './App.css'
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
@@ -31,7 +31,6 @@ const App:React.FC = () => {
         <Route path='/communities' element={<Communities />}/>
         <Route path='/community/:slug' element={<CommunityPage />} />
         <Route path='/profile/:id' element={<Profile />}/>
-        <Route path='/friends/:id' element={<Friends />}/>
         <Route path='/settings' element={<Settings />}/>
         <Route path='*' element={<NotFound />} />
       </Routes>
