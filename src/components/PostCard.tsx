@@ -4,7 +4,7 @@ import { FaCommentDots } from "react-icons/fa";
 import { MdSaveAlt } from "react-icons/md";
 import {useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useAuthStore from '../store/authStore';
+// import useAuthStore from '../store/authStore';
 import { PostData, UserDetailData } from '../types';
 import { getUserDetail } from '../services/userService';
 

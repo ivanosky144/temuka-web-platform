@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import Leftbar from '../components/Leftbar';
-import { CommunityCardData, CommunityData } from '../types';
+import { CommunityCardData } from '../types';
 import CommunityCard from '../components/CommunityCard';
 import { getCommunities } from '../services/communityService';
 

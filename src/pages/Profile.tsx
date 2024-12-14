@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router';
 import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
 
