@@ -1,4 +1,4 @@
-const API_KEY = process.env.REACT_APP_API_SERVICE
+const API_KEY = "http://3.25.103.16:3200"
 
 export function getToken() {
     if (typeof window !== 'undefined') {
