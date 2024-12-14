@@ -3,7 +3,7 @@ import { IoClose } from "react-icons/io5";
 import PostCustomDropdown from './PostCustomDropdown';
 import { createPost } from '../services/postService';
 import useAuthStore from '../store/authStore';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 enum PostTypeOption {
@@ -16,6 +16,7 @@ interface FormData {
     user_id: number | null
     title: string
     description: string
+    community_id: number | null | undefined
 }
 
 
@@ -24,11 +25,15 @@ const PostSubmitForm: React.FC = () => {
     const navigate = useNavigate();
     const user = useAuthStore((state) => state.user);
     const [option, setOption] = useState<PostTypeOption>(PostTypeOption.Text);
+    const [selectedCommunity, setSelectedCommunity] = useState<number | null | undefined>();
     const [postData, setData] = useState<FormData>({
         user_id: Number(user?.id),
         title: "",
         description: "",
+        community_id: selectedCommunity
     });
+
+    const { slug } = useParams();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value }= e.target;
@@ -57,7 +62,7 @@ const PostSubmitForm: React.FC = () => {
                     </Link>
                 </div>
                 <hr className='border-t-2 border-gray-300'></hr>
-                <PostCustomDropdown />
+                {slug ? <PostCustomDropdown current_slug={slug} setSelectedCommunity={setSelectedCommunity}/> : <PostCustomDropdown current_slug={null} setSelectedCommunity={setSelectedCommunity}/>}
                 <div className="flex gap-4 ">
                     <h2 className='p-2 rounded-sm hover:bg-gray-200 cursor-pointer font-semibold' onClick={() => setOption(PostTypeOption.Text)}>Teks</h2>
                     <h2 className='p-2 rounded-sm hover:bg-gray-200 cursor-pointer font-semibold' onClick={() => setOption(PostTypeOption.Media)}>Gambar & video</h2>

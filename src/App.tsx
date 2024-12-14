@@ -14,6 +14,7 @@ import Submit from './pages/Submit';
 import Post from './pages/Post';
 import Communities from './pages/Communities';
 import RouteWrapper from './components/RouteWrapper';
+import CommunitySubmit from './pages/CommunitySubmit';
 
 const App: React.FC = () => {
   return (
@@ -49,6 +50,14 @@ const App: React.FC = () => {
           element={
             <RouteWrapper type="protected">
               <Submit />
+            </RouteWrapper>
+          }
+        />
+        <Route
+          path="/community/:slug/submit"
+          element={
+            <RouteWrapper type="protected">
+              <CommunitySubmit />
             </RouteWrapper>
           }
         />

@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa';
-import { getJoinedCommunities } from '../services/communityService';
+import { getCommunityDetail, getJoinedCommunities } from '../services/communityService';
 import useAuthStore from '../store/authStore';
 import { CommunityData } from '../types';
 
-const PostCustomDropdown: React.FC = () => {
-  
+interface DropdownValue {
+    current_slug: string | null
+    setSelectedCommunity: React.Dispatch<React.SetStateAction<number | null | undefined>>
+} 
+
+interface SelectedOption {
+    Logo: string
+    Name: string
+    ID: number | null
+}
+
+const PostCustomDropdown: React.FC<DropdownValue> = ({ current_slug = null, setSelectedCommunity }) => {
+    
+    const defaultOption = {
+        Logo: "",
+        Name: "Pilih komunitas",
+        ID: null
+    };
+
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState("Pilih komunitas");
+    const [selectedOption, setSelectedOption] = useState<SelectedOption>(defaultOption);
     const [joinedCommunities, setJoinedCommunities] = useState<CommunityData[]>([]);
     const user = useAuthStore((state) => state.user);
 
@@ -22,10 +39,27 @@ const PostCustomDropdown: React.FC = () => {
         fetchData();
     }, [user?.id]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const { data } = await getCommunityDetail(String(current_slug));
+
+            const currentOption = {
+                Logo: data.LogoPicture,
+                Name: data.Name,
+                ID: data.ID
+            };
+
+            setSelectedOption(currentOption);
+            setSelectedCommunity(data.ID);
+        };
+        fetchData();
+    }, [current_slug]);
+
     const toggleDropdown = () => setIsOpen(!isOpen);
 
-    const handleSelect = (option: any) => {
-        setSelectedOption(option.label);
+    const handleSelect = (option: SelectedOption) => {
+        setSelectedOption(option);
+        setSelectedCommunity(option.ID);
         setIsOpen(false);
     };
   
@@ -36,7 +70,12 @@ const PostCustomDropdown: React.FC = () => {
             className="bg-gray-100 p-2 rounded-md cursor-pointer flex justify-between items-center hover:bg-gray-200"
         >
             <div className="flex items-center gap-2">
-            <h1 className="font-semibold">{selectedOption}</h1>
+                <img
+                    src={selectedOption.Logo}
+                    alt={selectedOption.Name}
+                    className="h-[20px] w-[20px] rounded-lg mr-2"
+                />
+                <h1 className="font-semibold">{selectedOption.Name}</h1>
             </div>
             <FaChevronDown />
         </div>
@@ -45,7 +84,11 @@ const PostCustomDropdown: React.FC = () => {
             {joinedCommunities?.map((option, idx) => (
                 <div
                     key={idx}
-                    onClick={() => handleSelect(option)}
+                    onClick={() => handleSelect({
+                        ID: option.ID,
+                        Name: option.Name,
+                        Logo: option.LogoPicture
+                    })}
                     className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
                 >
                     <img

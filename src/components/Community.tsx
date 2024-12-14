@@ -6,12 +6,13 @@ import { FaChevronDown } from "react-icons/fa";
 import { getCommunityDetail, joinCommunity } from "../services/communityService";
 import { CommunityData } from "../types";
 import useAuthStore from "../store/authStore";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const Community: React.FC = () => {
     
     const [communityDetail, setCommunityDetail] = useState<CommunityData>();
     const user = useAuthStore((state) => state.user);
+    const navigate = useNavigate();
     const { slug } = useParams();
 
     useEffect(() => {
@@ -51,7 +52,7 @@ const Community: React.FC = () => {
                     <h1 className="font-bold text-3xl">{communityDetail?.Name}</h1>
                     <div className="flex gap-2 items-center">
                         <button className="bg-darkcyan rounded-xl py-2 w-[100px] font-bold text-white shadow-md hover:opacity-80" onClick={handleJoin}>Gabung</button>
-                        <button className="bg-yellow rounded-xl py-2 w-[150px] font-bold text-darkcyan shadow-md hover:opacity-90">Buat Post</button>
+                        <button className="bg-yellow rounded-xl py-2 w-[150px] font-bold text-darkcyan shadow-md hover:opacity-90" onClick={() => navigate(`/community/${slug}/submit`)}>Buat Post</button>
                     </div>
                 </div>
             </div>
