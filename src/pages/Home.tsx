@@ -3,8 +3,13 @@ import Feed from '../components/Feed';
 import Leftbar from '../components/Leftbar';
 import Navbar from '../components/Navbar';
 import Rightbar from '../components/Rightbar';
+import Chat from '../components/Chat';
+import useChatStore from '../store/chatStore';
 
 const Home: React.FC = () => {
+
+  const { isChatVisible } = useChatStore();
+
   return (
     <>
         <Navbar />
@@ -15,6 +20,9 @@ const Home: React.FC = () => {
             </div>
             <Rightbar />
         </div>
+        {isChatVisible && (
+          <Chat />
+        )}
     </>
   );
 }

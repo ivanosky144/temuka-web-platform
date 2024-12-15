@@ -8,11 +8,16 @@ import { IoPerson } from "react-icons/io5";
 import useAuthStore from '../store/authStore';
 import { UserDetailData } from '../types';
 import { searchUsers } from '../services/userService';
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import Chat from './Chat';
+import useChatStore from '../store/chatStore';
+
 
 const Navbar: React.FC = () => {
 
   // const logout = useAuthStore((state) => state.logout);
   const user = useAuthStore((state) => state.user);
+  const { isChatVisible, setChatVisible } = useChatStore();
   const [usersList, setUsersList] = useState<UserDetailData[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const publicFolder = process.env.REACT_APP_BACKEND_URI + "/images/";
@@ -28,6 +33,7 @@ const Navbar: React.FC = () => {
   const handleSearchUsers = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
   };
+
 
   return (
     <div className="fixed h-16 bg-white flex items-center px-5 border-b-2 border-gray-200 w-[100%] z-99">
@@ -79,9 +85,9 @@ const Navbar: React.FC = () => {
           )}
         </div>
         <div className="w-[50%] flex gap-12 justify-end">
-          <Link to={"/"}>
-            <FaHome className='text-darkcyan hover:bg-yellow rounded-full text-4xl p-1'/>
-          </Link>
+          <button onClick={() => setChatVisible(!isChatVisible)}>
+            <IoChatbubbleEllipsesOutline className='text-darkcyan hover:bg-yellow rounded-full text-4xl p-1'/>
+          </button>
           <Link to={`/communities/${Number(user?.id)}`}>
             <FaLayerGroup className='text-darkcyan hover:bg-yellow rounded-full text-4xl p-1'/>
           </Link>
