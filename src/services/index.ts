@@ -1,4 +1,5 @@
 const API_KEY = "http://3.25.103.16:3200"
+export const WEBSOCKET_CONN = "ws://3.25.103.16:3200"
 
 export function getToken() {
     if (typeof window !== 'undefined') {

@@ -26,7 +26,7 @@ const Feed: React.FC = () => {
   return (
     <div className='w-[100%] bg-gray-50 min-h-screen px-5 py-8'>
       
-      {posts.map((p) => (
+      {posts?.map((p) => (
         <PostCard
           ID={p.ID || ""}
           UserID={p.UserID}

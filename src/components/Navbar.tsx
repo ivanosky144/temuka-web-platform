@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import { FaHome } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { FaLayerGroup } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
@@ -9,7 +8,6 @@ import useAuthStore from '../store/authStore';
 import { UserDetailData } from '../types';
 import { searchUsers } from '../services/userService';
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import Chat from './Chat';
 import useChatStore from '../store/chatStore';
 
 
@@ -51,7 +49,7 @@ const Navbar: React.FC = () => {
             />
           </div>
           {searchQuery ? (
-            usersList.length ? (
+            usersList?.length ? (
               <div className="bg-white absolute top-14 rounded-2xl px-2 py-2 shadow-md left-50 w-[40%] flex flex-col gap-1">
                 {usersList.map(user => (
                   <Link to={`/profile/${user.ID}`}>
@@ -59,7 +57,7 @@ const Navbar: React.FC = () => {
                       {user?.ProfilePicture === "" ? (
                         <img
                           className="h-10 w-10 object-cover rounded-full border-4 border-white"
-                          src={publicFolder + "DefaultPP.jpg"}
+                          src="/assets/DefaultUser.png"
                           alt="profile"
                         />
                       ) : 

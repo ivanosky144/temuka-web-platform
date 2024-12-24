@@ -7,6 +7,8 @@ import { getPostDetail } from '../services/postService';
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { BiSolidDownvote, BiSolidUpvote } from 'react-icons/bi';
 import { FaComment } from "react-icons/fa";
+import useAuthStore from '../store/authStore';
+import { addComment } from '../services/commentService';
 
 interface UserData {
     Username: string
@@ -19,11 +21,26 @@ interface PostDetail {
     comments: PostCommentData[]
 }
 
+interface CommentAddData {
+    user_id: number | null
+    parent_id: number | null
+    post_id: number
+    content: string
+}
+
 const Post: React.FC = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+    const user = useAuthStore((state) => state.user);
     const [postData, setPostData] = useState<PostDetail>();
+    const [comment, setComment] = useState<CommentAddData>({
+        user_id: Number(user?.id),
+        post_id: postData?.post.ID,
+        parent_id: null,
+        content: "",
+    });
+    const [isFocused, setIsFocused] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +49,19 @@ const Post: React.FC = () => {
         };
         fetchData();
     }, [id]);
+
+    const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value }= e.target;
+        setComment((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleAddComment = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await addComment(comment);
+    };
 
     const getTimeAgo = (date: Date): string => {
         const now = new Date();
@@ -85,7 +115,21 @@ const Post: React.FC = () => {
                             />
                         </div>
                         <div className="flex flex-col mt-4">
-                            <input type="text" placeholder='Tambahkan komen' className='border-2 border-gray-500 text-gray-500 rounded-lg bg-gray-50 p-2'/>
+                            {isFocused ? <form className='flex flex-col border-2 border-gray-500 text-gray-500 rounded-lg bg-gray-50 p-2' onSubmit={handleAddComment}>
+                                <input
+                                    type="text"
+                                    name="content"
+                                    className="bg-gray-50 outline-none text-black"
+                                    value={comment.content}
+                                    onChange={handleCommentChange}
+                                />                                
+                                <div className="flex justify-end gap-2">
+                                    <button className='bg-gray-500 rounded-xl px-2 py-1 text-white text-xs cursor-pointer' onClick={() => setIsFocused(false)}>Batalkan</button>
+                                    <button type="submit" className='bg-darkcyan rounded-xl px-2 py-1 text-white text-xs cursor-pointer'>Komen</button>
+                                </div>
+                            </form> : <>
+                                <input type="text" placeholder='Tambahkan komen' className='border-2 border-gray-500 text-gray-500 rounded-lg bg-gray-50 p-2' onClick={() => setIsFocused(true)}/>
+                            </>}
                             <div className="flex flex-col mt-8 gap-5">
                                 {postData?.comments.map((comment) => (
                                     <div className="flex flex-col">

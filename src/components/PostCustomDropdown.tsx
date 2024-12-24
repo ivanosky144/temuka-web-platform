@@ -53,7 +53,7 @@ const PostCustomDropdown: React.FC<DropdownValue> = ({ current_slug = null, setS
             setSelectedCommunity(data.ID);
         };
         fetchData();
-    }, [current_slug]);
+    }, [current_slug, setSelectedCommunity]);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
